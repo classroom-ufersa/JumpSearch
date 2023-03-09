@@ -18,4 +18,3 @@ def jump_search(A, item):
     B = A[i:i+m]
     print('Processamento - {}' .format(B))
     return search_linear(B, item, i)
-    
