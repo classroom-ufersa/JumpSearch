@@ -6,11 +6,12 @@
 struct aluno
 {
     char nome[81];
-    int mat;
+    int matricula;
     float notas[4];
     float media;
 };
 
 Aluno* buscar_aluno(FILE* arquivo, int mat){
-
+    Aluno* aluno = jumpS(arquivo,mat);
+    printf("%d", aluno->matricula);
 }
