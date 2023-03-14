@@ -15,7 +15,7 @@ int main(void)
     printf("Bem-vindo ao Programa de Gerenciamento de Alunos!\nEste programa gerencia os alunos.\nAutores: Jhoan,Abner,Caio,Tomaz\t\tVersao:1.0");
     while (controle != 6) // vai repetir ate o usuario digitar 6
     {
-        printf("\n\nMenu:\n1-Buscar aluno\n2-Listar Alunos\n3-Matricular alunos\n4-Lancar notas\n5-Alterar dados de um aluno\n6-Sair\n\nDigite sua opcao: ");
+        printf("\n\nMenu:\n1-Exibir aluno\n2-Listar Alunos\n3-Matricular alunos\n4-Lancar notas\n5-Alterar dados de um aluno\n6-Sair\n\nDigite sua opcao: ");
         scanf("%d", &controle);
         system("cls");
         switch (controle)
