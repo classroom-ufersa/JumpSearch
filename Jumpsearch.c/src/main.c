@@ -5,8 +5,8 @@ int main(void)
 {
     int controle;
     FILE *arquivo;
-   
-    arquivo = fopen("aluno.txt", "r");
+    char caminho [] = "C:\\Users\\jhoan\\Desktop\\VScode\\GitHub\\JumpSearch\\Jumpsearch.c\\data\\aluno.txt";
+    arquivo = fopen(caminho, "r");
     if (arquivo == NULL)
     {
         printf("Erro ao abrir arquivo!");
