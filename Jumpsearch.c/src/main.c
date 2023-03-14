@@ -4,10 +4,13 @@
 int main(void)
 {
     int controle;
-    FILE *arquivo = fopen("Alunos.txt", "r");
-    if(arquivo == NULL){
-        printf("Erro ao abrir o arquivo");
-        exit(1);
+    FILE *arquivo;
+    char caminho[] = "C:\\jhoan\\Desktop\\VScode\\GitHub\\JumpSearch\\Jumpsearch.c\\data\\aluno.txt";
+    arquivo = fopen(caminho, "r");
+    if (arquivo == NULL)
+    {
+        printf("Erro ao abrir arquivo!");
+        return 1;
     }
     printf("Bem-vindo ao Programa de Gerenciamento de Alunos!\nEste programa gerencia os alunos.\nAutores: Jhoan,Abner,Caio,Tomaz\t\tVersao:1.0");
     while (controle != 6) // vai repetir ate o usuario digitar 6
@@ -18,7 +21,7 @@ int main(void)
         switch (controle)
         {
         case 1:
-        
+
             break;
         case 2:
 
