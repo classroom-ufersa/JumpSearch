@@ -1,1 +1,0 @@
-Aluno* JumpS(FILE* arquivo, int mat);
