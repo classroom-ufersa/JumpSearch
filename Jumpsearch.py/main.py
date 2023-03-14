@@ -20,7 +20,6 @@ while controle != 6:
     print("\n\nMenu:\n1-Buscar aluno\n2-Listar Alunos\n3-Matricular alunos\n4-Lancar notas\n5-Alterar dados de um aluno\n6-Sair\n\nDigite sua opcao: ")
     controle = int(input())
     os.system('cls' if os.name == 'nt' else 'clear')  # Limpa a tela do terminal
-    
     # Tratamento da opção escolhida pelo usuário
     if controle == 1:
         pass  # Implemente o código para buscar aluno
@@ -36,6 +35,5 @@ while controle != 6:
         print("Obrigado por usar meu programa!")
     else:
         print("Opção inválida!")
-
 # Fechamento do arquivo
 arquivo.close()
