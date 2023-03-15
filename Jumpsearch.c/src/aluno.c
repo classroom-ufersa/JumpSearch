@@ -10,7 +10,10 @@ typedef struct aluno
     float media;
 } Aluno;
 
-FILE *cadastrarAluno(FILE *arquivo, char caminho[], Aluno *alunos, int *qnta)
+Aluno* BuscarAlunoPeloNome (Aluno * aluno, int qnta);
+
+//função que adiciona aluno no arquivo
+FILE *cadastrarAluno(FILE *arquivo, char caminho[])
 {
     Aluno aluno;
     int i;
@@ -48,6 +51,7 @@ FILE *cadastrarAluno(FILE *arquivo, char caminho[], Aluno *alunos, int *qnta)
     return arquivo;
 }
 
+//Função que lê o arquivo e adiciona os alunos numa array do tipo aluno
 Aluno * lerArquivo(Aluno *alunos, char caminho[], int *qnta)
 {
     FILE *arquivo;
@@ -98,6 +102,7 @@ Aluno * lerArquivo(Aluno *alunos, char caminho[], int *qnta)
     return alunos;
 }
 
+//exibe os alunos armazenados na struct Aluno
 void ListarAlunos(Aluno *alunos, int qnta)
 {
     int i, j;
