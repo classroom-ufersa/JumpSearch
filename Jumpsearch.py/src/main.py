@@ -3,21 +3,21 @@ import os
 
 # Abertura do arquivo
 try:
-    arquivo = open("Jumpsearch.py\\data\\aluno.txt", "r")
+    arquivo = open('c:\\Users\\Moises\\OneDrive\\Área de Trabalho\\Jump\\JumpSearch\\Jumpsearch.py\\dataset\\alunos.csv', "r")
 except:
     print("Erro ao abrir arquivo!")
     exit(1)
 
 # Exibição do cabeçalho
-print("Bem-vindo ao Programa de Gerenciamento de Alunos!")
+print("\nBem-vindo ao Programa de Gerenciamento de Alunos!")
 print("Este programa gerencia os alunos.")
-print("Autores: Jhoan, Abner, Caio, Tomaz\t\tVersao:1.0")
+print("Autores: Jhoan, Abner, Caio, Tomaz\tVersao:1.0")
 
 # Loop principal
 controle = 0
 while controle != 6:
     # Exibição do menu
-    print("\n\nMenu:\n1-Buscar aluno\n2-Listar Alunos\n3-Matricular alunos\n4-Lancar notas\n5-Alterar dados de um aluno\n6-Sair\n\nDigite sua opcao: ")
+    print("\nMenu:\n1-Buscar aluno\n2-Listar Alunos\n3-Matricular alunos\n4-Lancar notas\n5-Alterar dados de um aluno\n6-Sair\n\nDigite sua opcao: ")
     controle = int(input())
     os.system('cls' if os.name == 'nt' else 'clear')  # Limpa a tela do terminal
     # Tratamento da opção escolhida pelo usuário
