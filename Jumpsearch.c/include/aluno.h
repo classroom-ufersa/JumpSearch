@@ -1,7 +1,12 @@
+#include <stdio.h>
+
 typedef struct aluno Aluno;
 
-//função que exibe um aluno especifico por meio da matricula
-void ExibirAluno(int matricula, Aluno** alunos);
+//função que adiciona aluno no arquivo
+FILE* cadastrarAluno(FILE* arquivo, char caminho [],Aluno* alunos,int* qnta);
 
-//função para exibir todos os alunos
-void ListarAlunos(Aluno** alunos, int n);
+//Função que lê o arquivo e adiciona os alunos numa array do tipo aluno
+Aluno * lerArquivo(Aluno *alunos, char caminho[], int *qnta); 
+
+//exibe os alunos armazenados
+void ListarAlunos(Aluno* alunos, int qnta);
