@@ -2,7 +2,17 @@
 
 typedef struct aluno Aluno;
 
-Aluno* BuscarAlunoPeloNome (Aluno * aluno, int qnta);
+// Função auxiliar para comparar duas matrículas de alunos
+int compararMatriculas(const void* a, const void* b);
+
+// Função que busca um aluno pela matrícula utilizando o algoritmo Jump Search
+Aluno* BuscarAlunoPelaMatricula(Aluno* alunos, int qnta);
+
+// Função auxiliar para comparar dois nomes de alunos
+int compararNomes(const void* a, const void* b);
+
+// Função que busca um aluno pelo nome utilizando o algoritmo Jump Search
+Aluno* BuscarAlunoPeloNome(Aluno* alunos, int qnta);
 
 //função que adiciona aluno no arquivo
 FILE* cadastrarAluno(FILE* arquivo, char caminho []);

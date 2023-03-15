@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 
 typedef struct aluno
 {
@@ -10,9 +11,117 @@ typedef struct aluno
     float media;
 } Aluno;
 
-Aluno* BuscarAlunoPeloNome (Aluno * aluno, int qnta);
+// Função auxiliar para comparar duas matrículas de alunos
+int compararMatriculas(const void *a, const void *b)
+{
+    Aluno *alunoA = (Aluno *)a;
+    Aluno *alunoB = (Aluno *)b;
+    return alunoA->matricula - alunoB->matricula;
+}
 
-//função que adiciona aluno no arquivo
+// Função que busca um aluno pela matrícula utilizando o algoritmo Jump Search
+Aluno *BuscarAlunoPelaMatricula(Aluno *alunos, int qnta)
+{
+    int matricula;
+    int salto = sqrt(qnta);
+    int i, j;
+
+    // Verificar se o array de alunos está vazio
+    if (alunos == NULL)
+    {
+        printf("Nenhum aluno cadastrado.\n");
+        return NULL;
+    }
+
+    // Pedir ao usuário a matrícula do aluno que deseja buscar
+    printf("Digite a matricula do aluno que deseja buscar: ");
+    scanf("%d", &matricula);
+
+    // Ordenar o array de alunos em ordem crescente pela matrícula
+    qsort(alunos, qnta, sizeof(Aluno), compararMatriculas);
+
+    // Aplicar o algoritmo Jump Search para encontrar o índice do aluno no array
+    i = 0;
+    while (i < qnta && alunos[i].matricula < matricula)
+    {
+        i += salto;
+    }
+    if (i >= qnta || alunos[i].matricula > matricula)
+    {
+        i -= salto;
+        for (j = i; j < i + salto && j < qnta; j++)
+        {
+            if (alunos[j].matricula == matricula)
+            {
+                return &alunos[j];
+            }
+        }
+        return NULL;
+    }
+    else if (alunos[i].matricula == matricula)
+    {
+        return &alunos[i];
+    }
+
+    return NULL;
+}
+
+// Função auxiliar para comparar dois nomes de alunos
+int compararNomes(const void *a, const void *b)
+{
+    Aluno *alunoA = (Aluno *)a;
+    Aluno *alunoB = (Aluno *)b;
+    return strcmp(alunoA->nome, alunoB->nome);
+}
+
+// Função que busca um aluno pelo nome utilizando o algoritmo Jump Search
+Aluno *BuscarAlunoPeloNome(Aluno *alunos, int qnta)
+{
+    char nome[100];
+    int salto = sqrt(qnta);
+    int i, j;
+
+    // Verificar se o array de alunos está vazio
+    if (alunos == NULL)
+    {
+        printf("Nenhum aluno cadastrado.\n");
+        return NULL;
+    }
+
+    // Pedir ao usuário o nome do aluno que deseja buscar
+    printf("Digite o nome do aluno que deseja buscar: ");
+    scanf(" %[^\n]s", nome);
+
+    // Ordenar o array de alunos em ordem alfabética pelo nome
+    qsort(alunos, qnta, sizeof(Aluno), compararNomes);
+
+    // Aplicar o algoritmo Jump Search para encontrar o índice do aluno no array
+    i = 0;
+    while (i < qnta && strcmp(alunos[i].nome, nome) < 0)
+    {
+        i += salto;
+    }
+    if (i >= qnta || strcmp(alunos[i].nome, nome) > 0)
+    {
+        i -= salto;
+        for (j = i; j < i + salto && j < qnta; j++)
+        {
+            if (strcmp(alunos[j].nome, nome) == 0)
+            {
+                return &alunos[j];
+            }
+        }
+        return NULL;
+    }
+    else if (strcmp(alunos[i].nome, nome) == 0)
+    {
+        return &alunos[i];
+    }
+
+    return NULL;
+}
+
+// função que adiciona aluno no arquivo
 FILE *cadastrarAluno(FILE *arquivo, char caminho[])
 {
     Aluno aluno;
@@ -43,7 +152,7 @@ FILE *cadastrarAluno(FILE *arquivo, char caminho[])
     aluno.media = aluno.media / 3;
 
     // Escrever os dados do aluno no arquivo
-    fprintf(arquivo, "%s %d %.2f %.2f %.2f %.2f\n", aluno.nome, aluno.matricula, aluno.notas[0], aluno.notas[1], aluno.notas[2], aluno.media);
+    fprintf(arquivo, "%s %d %.1f %.1f %.1f %.1f\n", aluno.nome, aluno.matricula, aluno.notas[0], aluno.notas[1], aluno.notas[2], aluno.media);
 
     // Fechar o arquivo
     fclose(arquivo);
@@ -51,8 +160,8 @@ FILE *cadastrarAluno(FILE *arquivo, char caminho[])
     return arquivo;
 }
 
-//Função que lê o arquivo e adiciona os alunos numa array do tipo aluno
-Aluno * lerArquivo(Aluno *alunos, char caminho[], int *qnta)
+// Função que lê o arquivo e adiciona os alunos numa array do tipo aluno
+Aluno *lerArquivo(Aluno *alunos, char caminho[], int *qnta)
 {
     FILE *arquivo;
     int i = 0;
@@ -102,7 +211,7 @@ Aluno * lerArquivo(Aluno *alunos, char caminho[], int *qnta)
     return alunos;
 }
 
-//exibe os alunos armazenados na struct Aluno
+// exibe os alunos armazenados na struct Aluno
 void ListarAlunos(Aluno *alunos, int qnta)
 {
     int i, j;
