@@ -1,39 +1,35 @@
 # Importação das bibliotecas necessárias
 import os
+import math
 
 # Abertura do arquivo
 try:
-    arquivo = open('c:\\Users\\Moises\\OneDrive\\Área de Trabalho\\Jump\\JumpSearch\\Jumpsearch.py\\dataset\\alunos.csv', "r")
+    arquivo_alunos = open('c:\\Users\\Moises\\OneDrive\\Área de Trabalho\\Jump\\JumpSearch\\Jumpsearch.py\\dataset\\alunos.csv', "r")
 except:
     print("Erro ao abrir arquivo!")
     exit(1)
 
-# Exibição do cabeçalho
-print("\nBem-vindo ao Programa de Gerenciamento de Alunos!")
-print("Este programa gerencia os alunos.")
-print("Autores: Jhoan, Abner, Caio, Tomaz\tVersao:1.0")
-
-# Loop principal
-controle = 0
-while controle != 6:
-    # Exibição do menu
-    print("\nMenu:\n1-Buscar aluno\n2-Listar Alunos\n3-Matricular alunos\n4-Lancar notas\n5-Alterar dados de um aluno\n6-Sair\n\nDigite sua opcao: ")
-    controle = int(input())
-    os.system('cls' if os.name == 'nt' else 'clear')  # Limpa a tela do terminal
-    # Tratamento da opção escolhida pelo usuário
-    if controle == 1:
-        pass  # Implemente o código para buscar aluno
-    elif controle == 2:
-        pass  # Implemente o código para listar alunos
-    elif controle == 3:
-        pass  # Implemente o código para matricular alunos
-    elif controle == 4:
-        pass  # Implemente o código para lançar notas
-    elif controle == 5:
-        pass  # Implemente o código para alterar dados de um aluno
-    elif controle == 6:
-        print("Obrigado por usar meu programa!")
+def JumpSearch(arquivo_alunos, x):
+    n = len(arquivo_alunos)
+    # Definir o tamanho do salto
+    jump_tamanho = math.sqrt(n)
+    # Definir o limite superior e inferior do intervalo de busca
+    menor = 0
+    superior = jump_tamanho
+    # Encontrar o bloco onde a string pode estar presente
+    while arquivo_alunos[min(superior, n)-1] < x:
+        menor = superior
+        superior += jump_tamanho
+        if menor >= n:
+            return -1
+    # Realizar uma pesquisa linear no bloco encontrado
+    while arquivo_alunos[menor] < x:
+        menor += 1
+        if menor == min(superior, n):
+            return -1
+    # Se a string for encontrada, retornar o índice correspondente
+    if arquivo_alunos[menor] == x:
+        return menor
     else:
-        print("Opção inválida!")
-# Fechamento do arquivo
-arquivo.close()
+        return -1
+    print(arquivo_alunos)
