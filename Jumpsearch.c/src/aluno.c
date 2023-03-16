@@ -224,7 +224,7 @@ void ListarAlunos(Aluno *alunos, int qnta)
     // Imprimir os dados de cada aluno
     for (i = 0; i < qnta; i++)
     {
-        printf("Aluno %d:\n", i + 1);
+        printf("Aluno %d\n", i + 1);
         printf("Nome: %s\n", alunos[i].nome);
         printf("Matricula: %d\n", alunos[i].matricula);
         printf("Notas: ");

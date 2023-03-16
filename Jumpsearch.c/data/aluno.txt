@@ -1,3 +1,5 @@
 Jhoan Fernandes	1	7.5	8.4	9.7	8.5
 Luiz Felipe Tomaz	2	6.8	8.9	7.5	7.7
 Caio Moises	3	7.0	8.0	9.0	8.0
+Heitor Claudino	4	8.0	9.0	7.0	8.0
+Vitor Lucas	5	7.8	8.6	5.6	7.3
