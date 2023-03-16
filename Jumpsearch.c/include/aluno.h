@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+typedef struct documento Documento;
+
 typedef struct aluno Aluno;
 
 // Função auxiliar para comparar duas matrículas de alunos

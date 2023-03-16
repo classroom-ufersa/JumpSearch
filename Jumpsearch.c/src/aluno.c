@@ -3,10 +3,17 @@
 #include <string.h>
 #include <math.h>
 
+typedef union documento
+{
+    char cpf[15];
+    char rg[12];
+} Documento;
+
 typedef struct aluno
 {
     char nome[100];
     int matricula;
+    Documento documento;
     float notas[3];
     float media;
 } Aluno;
@@ -121,11 +128,11 @@ Aluno *BuscarAlunoPeloNome(Aluno *alunos, int qnta)
     return NULL;
 }
 
-// função que adiciona aluno no arquivo
 FILE *cadastrarAluno(FILE *arquivo, char caminho[])
 {
     Aluno aluno;
     int i;
+    char opcao_documento;
 
     // Abrir o arquivo para escrita
     arquivo = fopen(caminho, "a");
@@ -143,6 +150,28 @@ FILE *cadastrarAluno(FILE *arquivo, char caminho[])
     printf("Digite a matricula do aluno: ");
     scanf("%d", &aluno.matricula);
     aluno.media = 0.0;
+
+    // Pedir para o usuário escolher qual documento cadastrar
+    printf("Digite '1' para cadastrar o CPF ou '2' para cadastrar o RG: ");
+    scanf(" %c", &opcao_documento);
+
+    // Ler o documento escolhido pelo usuário
+    if (opcao_documento == '1')
+    {
+        printf("Digite o CPF do aluno (XXX.YYY.ZZZ-SS): ");
+        scanf(" %s", aluno.documento.cpf);
+    }
+    else if (opcao_documento == '2')
+    {
+        printf("Digite o RG do aluno (XXX.YYY.ZZZ): ");
+        scanf(" %s", aluno.documento.rg);
+    }
+    else
+    {
+        printf("Opcao invalida.\n");
+        exit(1);
+    }
+
     for (i = 0; i < 3; i++)
     {
         printf("Digite a nota %d do aluno: ", i + 1);
@@ -152,7 +181,14 @@ FILE *cadastrarAluno(FILE *arquivo, char caminho[])
     aluno.media = aluno.media / 3;
 
     // Escrever os dados do aluno no arquivo
-    fprintf(arquivo, "%s\t%d\t%.1f\t%.1f\t%.1f\t%.1f\n", aluno.nome, aluno.matricula, aluno.notas[0], aluno.notas[1], aluno.notas[2], aluno.media);
+    if (opcao_documento == '1')
+    {
+        fprintf(arquivo, "%s\t%d\t%s\t%.1f\t%.1f\t%.1f\t%.1f\n", aluno.nome, aluno.matricula, aluno.documento.cpf, aluno.notas[0], aluno.notas[1], aluno.notas[2], aluno.media);
+    }
+    else
+    {
+        fprintf(arquivo, "%s\t%d\t%s\t%.1f\t%.1f\t%.1f\t%.1f\n", aluno.nome, aluno.matricula, aluno.documento.rg, aluno.notas[0], aluno.notas[1], aluno.notas[2], aluno.media);
+    }
 
     // Fechar o arquivo
     fclose(arquivo);
@@ -160,7 +196,6 @@ FILE *cadastrarAluno(FILE *arquivo, char caminho[])
     return arquivo;
 }
 
-// Função que lê o arquivo e adiciona os alunos numa array do tipo aluno
 Aluno *lerArquivo(Aluno *alunos, char caminho[], int *qnta)
 {
     FILE *arquivo;
@@ -196,6 +231,15 @@ Aluno *lerArquivo(Aluno *alunos, char caminho[], int *qnta)
         strcpy((alunos)[i].nome, token);
         token = strtok(NULL, "\t"); // extrai a matrícula
         (alunos)[i].matricula = atoi(token);
+        token = strtok(NULL, "\t"); // extrai o documento
+        if (strlen(token) == 14)
+        {
+            strcpy((alunos)[i].documento.cpf, token);
+        }
+        else if (strlen(token) == 11)
+        {
+            strcpy((alunos)[i].documento.rg, token);
+        }
         token = strtok(NULL, "\t"); // extrai a primeira nota
         (alunos)[i].notas[0] = atof(token);
         token = strtok(NULL, "\t"); // extrai a segunda nota
@@ -227,6 +271,14 @@ void ListarAlunos(Aluno *alunos, int qnta)
         printf("Aluno %d\n", i + 1);
         printf("Nome: %s\n", alunos[i].nome);
         printf("Matricula: %d\n", alunos[i].matricula);
+        if (strlen(alunos[i].documento.cpf) == 14)
+        {
+            printf("CPF: %s\n", alunos[i].documento.cpf);
+        }
+        else if (strlen(alunos[i].documento.rg) == 11)
+        {
+            printf("RG: %s\n", alunos[i].documento.rg);
+        }
         printf("Notas: ");
         for (j = 0; j < 3; j++)
         {

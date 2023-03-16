@@ -41,6 +41,14 @@ int main(void)
                 printf("\nAluno Encontrado!\n\n");
                 printf("Nome: %s\n", alunotemporario->nome);
                 printf("Matricula: %d\n", alunotemporario->matricula);
+                if (strlen(alunotemporario->documento.cpf) == 14)
+                {
+                    printf("CPF: %s\n", alunotemporario->documento.cpf);
+                }
+                else if (strlen(alunotemporario->documento.rg) == 11)
+                {
+                    printf("RG: %s\n", alunotemporario->documento.rg);
+                }
                 printf("Notas: ");
                 for (j = 0; j < 3; j++)
                 {
@@ -60,6 +68,14 @@ int main(void)
                 printf("\nAluno Encontrado!\n\n");
                 printf("Nome: %s\n", alunotemporario->nome);
                 printf("Matricula: %d\n", alunotemporario->matricula);
+                if (strlen(alunotemporario->documento.cpf) == 14)
+                {
+                    printf("CPF: %s\n", alunotemporario->documento.cpf);
+                }
+                else if (strlen(alunotemporario->documento.rg) == 11)
+                {
+                    printf("RG: %s\n", alunotemporario->documento.rg);
+                }
                 printf("Notas: ");
                 for (j = 0; j < 3; j++)
                 {
