@@ -152,11 +152,11 @@ FILE *cadastrarAluno(FILE *arquivo, char caminho[])
     aluno.media = aluno.media / 3;
 
     // Escrever os dados do aluno no arquivo
-    fprintf(arquivo, "%s %d %.1f %.1f %.1f %.1f\n", aluno.nome, aluno.matricula, aluno.notas[0], aluno.notas[1], aluno.notas[2], aluno.media);
+    fprintf(arquivo, "%s\t%d\t%.1f\t%.1f\t%.1f\t%.1f\n", aluno.nome, aluno.matricula, aluno.notas[0], aluno.notas[1], aluno.notas[2], aluno.media);
 
     // Fechar o arquivo
     fclose(arquivo);
-    printf("Aluno cadastrado com sucesso.\n");
+    printf("Aluno cadastrado com sucesso.\n\n");
     return arquivo;
 }
 
@@ -192,17 +192,17 @@ Aluno *lerArquivo(Aluno *alunos, char caminho[], int *qnta)
         }
 
         // Extrai os dados de um aluno a partir de uma linha do arquivo
-        token = strtok(linha, " "); // extrai o nome do aluno
+        token = strtok(linha, "\t"); // extrai o nome do aluno
         strcpy((alunos)[i].nome, token);
-        token = strtok(NULL, " "); // extrai a matrícula
+        token = strtok(NULL, "\t"); // extrai a matrícula
         (alunos)[i].matricula = atoi(token);
-        token = strtok(NULL, " "); // extrai a primeira nota
+        token = strtok(NULL, "\t"); // extrai a primeira nota
         (alunos)[i].notas[0] = atof(token);
-        token = strtok(NULL, " "); // extrai a segunda nota
+        token = strtok(NULL, "\t"); // extrai a segunda nota
         (alunos)[i].notas[1] = atof(token);
-        token = strtok(NULL, " "); // extrai a terceira nota
+        token = strtok(NULL, "\t"); // extrai a terceira nota
         (alunos)[i].notas[2] = atof(token);
-        token = strtok(NULL, " "); // extrai a média
+        token = strtok(NULL, "\t"); // extrai a média
         (alunos)[i].media = atof(token);
         i++; // incrementa o índice do array
     }

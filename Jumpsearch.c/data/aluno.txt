@@ -1,4 +1,3 @@
-Jhoan 1 7.5 8.7 8.9 8.4
-Heitor 2 9.3 6.4 8.2 8.0
-Tomaz 3 7.2 8.3 7.6 7.7
-lucas 4 7.5 8.0 9.0 8.2
+Jhoan Fernandes	1	7.5	8.4	9.7	8.5
+Luiz Felipe Tomaz	2	6.8	8.9	7.5	7.7
+Caio Moises	3	7.0	8.0	9.0	8.0

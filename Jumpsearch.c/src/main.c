@@ -4,13 +4,13 @@
 
 int main(void)
 {
-    int controle, totaldealunos = 0, j; 
+    int controle, totaldealunos = 0, j;
     Aluno *alunotemporario;
     FILE *arquivo;
-    char caminho[] = "C:\\Users\\jhoan\\Desktop\\VScode\\GitHub\\JumpSearch\\Jumpsearch.c\\data\\aluno.txt"; //caminho do arquivo txt(Varia de pc para pc)
+    char caminho[] = "C:\\Users\\jhoan\\Desktop\\VScode\\GitHub\\JumpSearch\\Jumpsearch.c\\data\\aluno.txt"; // caminho do arquivo txt(Varia de pc para pc)
     arquivo = fopen(caminho, "r");
     Aluno *alunos = (Aluno *)malloc(sizeof(Aluno)); // alocando dinamicamente
-    alunos = NULL; // inicializnando o "vetor aluno"
+    alunos = NULL;                                  // inicializnando o "vetor aluno"
     if (arquivo == NULL)
     {
         printf("Erro ao abrir arquivo!");
@@ -50,7 +50,7 @@ int main(void)
             }
             else
             {
-                printf("Aluno Nao foi encontrado!\n");
+                printf("Aluno Nao foi encontrado!\n\n");
             }
             break;
         case 5:
@@ -69,7 +69,7 @@ int main(void)
             }
             else
             {
-                printf("Aluno Nao foi encontrado!\n");
+                printf("Aluno Nao foi encontrado!\n\n");
             }
             break;
         case 6:
