@@ -16,10 +16,25 @@ int main(void)
         printf("Erro ao abrir arquivo!");
         return 1;
     }
-    printf("Bem-vindo ao Programa de Gerenciamento de Alunos!\nAutores: Jhoan,Abner,Caio,Tomaz\t\tVersao:1.0\n\n");
+    printf("+----------------------------------------------------------------+\n"
+           "|        Bem-vindo ao Programa de Gerenciamento de Alunos        |\n"
+           "|                                                                |\n"
+           "|             Autores: Jhoan   Abner   Caio    Tomaz             |\n"
+           "|                                                                |\n"
+           "|                          Versao: 2.0                           |\n"
+           "+----------------------------------------------------------------+\n\n");
     while (controle != 6) // vai repetir ate o usuario digitar 6
     {
-        printf("Menu:\n1-Atualizar sistema\n2-Listar Alunos\n3-Matricular alunos\n4-Buscar aluno por matricula\n5-Buscar aluno pelo nome\n6-Sair\n\nDigite sua opcao: ");
+        printf("Menu:\n");
+        printf("========================================\n");
+        printf("[1] Atualizar sistema\n");
+        printf("[2] Listar Alunos\n");
+        printf("[3] Matricular alunos\n");
+        printf("[4] Buscar aluno por matricula\n");
+        printf("[5] Buscar aluno pelo nome\n");
+        printf("[6] Sair\n");
+        printf("========================================\n");
+        printf("Digite o numero da opcao desejada: ");
         scanf("%d", &controle);
         system("cls");
         switch (controle)
