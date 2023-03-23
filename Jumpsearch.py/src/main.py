@@ -1,35 +1,36 @@
 # Importação das bibliotecas necessárias
+import csv
 import os
 import math
+import pandas as pd
 
 # Abertura do arquivo
-try:
-    arquivo_alunos = open('c:\\Users\\Moises\\OneDrive\\Área de Trabalho\\Jump\\JumpSearch\\Jumpsearch.py\\dataset\\alunos.csv', "r")
-except:
-    print("Erro ao abrir arquivo!")
-    exit(1)
+#try:
+ #   lista_alunos = open('c:\\Users\\Moises\\OneDrive\\Área de Trabalho\\Jump\\JumpSearch\\Jumpsearch.py\\dataset\\alunos.csv', "r")
+#except:
+ #   print("Erro ao abrir lista!")
+  #  exit(1)
 
-def JumpSearch(arquivo_alunos, x):
-    n = len(arquivo_alunos)
-    # Definir o tamanho do salto
-    jump_tamanho = math.sqrt(n)
-    # Definir o limite superior e inferior do intervalo de busca
-    menor = 0
-    superior = jump_tamanho
-    # Encontrar o bloco onde a string pode estar presente
-    while arquivo_alunos[min(superior, n)-1] < x:
-        menor = superior
-        superior += jump_tamanho
-        if menor >= n:
-            return -1
-    # Realizar uma pesquisa linear no bloco encontrado
-    while arquivo_alunos[menor] < x:
-        menor += 1
-        if menor == min(superior, n):
-            return -1
-    # Se a string for encontrada, retornar o índice correspondente
-    if arquivo_alunos[menor] == x:
-        return menor
-    else:
-        return -1
-    print(arquivo_alunos)
+#lista_alunos = lista_alunos.read()
+
+def jump_search(nome, lista_alunos):
+    tamanho = len(lista_alunos)
+    jump = int(math.sqrt(tamanho))
+    prev = 0
+    curr = jump
+    while curr < tamanho and lista_alunos[curr] <= nome:
+        prev = curr
+        curr += jump
+    for i in range(prev, min(curr, tamanho)):
+        if lista_alunos[i] == nome:
+            return i
+    return -1
+
+lista_alunos = open('c:\\Users\\Moises\\OneDrive\\Área de Trabalho\\Jump\\JumpSearch\\Jumpsearch.py\\dataset\\alunos.csv', "r")
+lista_alunos = lista_alunos.read()
+nome = 'Bruno'
+index = jump_search(nome, lista_alunos)
+if index != -1:
+    print(f"{nome} encontrado na posição {index}")
+else:
+    print(f"{nome} nao foi encontrado")
