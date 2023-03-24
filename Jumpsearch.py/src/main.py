@@ -1,35 +1,17 @@
-# Importação das bibliotecas necessárias
-import os
-import math
+import csv
 
-# Abertura do arquivo
-try:
-    arquivo_alunos = open('c:\\Users\\Moises\\OneDrive\\Área de Trabalho\\Jump\\JumpSearch\\Jumpsearch.py\\dataset\\alunos.csv', "r")
-except:
-    print("Erro ao abrir arquivo!")
-    exit(1)
+# leitura da lista de strings a partir do arquivo CSV
+arquivo = "c:\\Users\\Moises\\OneDrive\\Área de Trabalho\\Jump\\JumpSearch\\Jumpsearch.py\\dataset\\alunos.csv"
+with open(arquivo, "r") as file:
+    reader = csv.reader(file)
+    lista_nomes = [row[0] for row in reader]
 
-def JumpSearch(arquivo_alunos, x):
-    n = len(arquivo_alunos)
-    # Definir o tamanho do salto
-    jump_tamanho = math.sqrt(n)
-    # Definir o limite superior e inferior do intervalo de busca
-    menor = 0
-    superior = jump_tamanho
-    # Encontrar o bloco onde a string pode estar presente
-    while arquivo_alunos[min(superior, n)-1] < x:
-        menor = superior
-        superior += jump_tamanho
-        if menor >= n:
-            return -1
-    # Realizar uma pesquisa linear no bloco encontrado
-    while arquivo_alunos[menor] < x:
-        menor += 1
-        if menor == min(superior, n):
-            return -1
-    # Se a string for encontrada, retornar o índice correspondente
-    if arquivo_alunos[menor] == x:
-        return menor
-    else:
-        return -1
-    print(arquivo_alunos)
+# entrada do usuário da nome a ser buscada
+nome = input("Digite a nome a ser buscada: ")
+
+# busca da nome na lista
+index = jump_search(nome, lista_nomes)
+if index != -1:
+    print(f"{nome} encontrada na posição {index} da lista")
+else:
+    print(f"{nome} não encontrada na lista")
