@@ -1,20 +1,25 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "aluno.c"
 
 int main(void)
 {
+    clock_t inicio;
+    double tempo;
     int controle, totaldealunos = 0, j;
     Aluno *alunotemporario;
     FILE *arquivo;
     char caminho[] = "C:\\Users\\jhoan\\Desktop\\VScode\\GitHub\\JumpSearch\\Jumpsearch.c\\data\\aluno.txt"; // caminho do arquivo txt(Varia de pc para pc)
     arquivo = fopen(caminho, "r");
     Aluno *alunos = (Aluno *)malloc(sizeof(Aluno)); // alocando dinamicamente
-    alunos = NULL;                                  // inicializnando o "vetor aluno"
+    if (alunos == NULL)
+    {
+        printf("[ERRO]");
+        exit(1);
+    }
+    alunos = NULL; // inicializnando o "vetor aluno"
     if (arquivo == NULL)
     {
         printf("Erro ao abrir arquivo!");
-        return 1;
+        exit(1);
     }
     printf("+----------------------------------------------------------------+\n"
            "|        Bem-vindo ao Programa de Gerenciamento de Alunos        |\n"
@@ -50,7 +55,11 @@ int main(void)
             cadastrarAluno(arquivo, caminho);
             break;
         case 4:
+            inicio = clock();
             alunotemporario = BuscarAlunoPelaMatricula(alunos, totaldealunos);
+            tempo = (double)(clock() - inicio) / CLOCKS_PER_SEC;
+            tempo = tempo * 1000; // Milisegundos
+            printf("Tempo de execucao: %.1f Milisegundos\n", tempo);
             if (alunotemporario != NULL)
             {
                 printf("\nAluno Encontrado!\n\n");
@@ -77,7 +86,11 @@ int main(void)
             }
             break;
         case 5:
+            inicio = clock();
             alunotemporario = BuscarAlunoPeloNome(alunos, totaldealunos);
+            tempo = (double)(clock() - inicio) / CLOCKS_PER_SEC;
+            tempo = tempo * 1000; // Milisegundos
+            printf("Tempo de execucao: %.1f Milisegundos\n", tempo);
             if (alunotemporario != NULL)
             {
                 printf("\nAluno Encontrado!\n\n");
