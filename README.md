@@ -7,8 +7,8 @@ Feito em Python e em C.
 ## Tópicos
 
 - [Sobre o JumpSearch](#Sobre-o-JumpSearch)
-- [Análise Big-O](#Análise-Big-O)
-
+- [Análise Big-O](#análise-big-o)
+- [Etapas de pesquisa de salto](#etapas-de-pesquisa-de-salto)
 
 ## Sobre o JumpSearch
 
@@ -20,7 +20,18 @@ A partir deste ponto, o algoritmo realiza uma busca linear nos elementos do bloc
 
 bem mais eficiente do que uma busca linear.
 
-## Análise Big O
+## Etapas de pesquisa de salto
+
+### Entradas:
+
+- Array/lista `A` de tamanho `n`
+- Chave de pesquisa `item`
+
+### Saída:
+
+- Índice da chave de pesquisa correspondente ou `-1` se `item` não for encontrado
+
+## Análise Big-O
 
 Vamos fazer uma análise mais geral de como o Jump Search funciona. Mais uma vez, consideraremos o pior cenário em que o elemento a ser encontrado está no final da lista.
 
@@ -29,5 +40,5 @@ Para obter uma lista de nelementos e um tamanho de bloco de m, a Pesquisa de sal
 Isso coloca a pesquisa de salto entre a pesquisa linear (pior) com uma complexidade de tempo de execução de O(n)e a pesquisa binária (melhor) com uma complexidade de tempo de execução de O(log n). Portanto, o Jump Search pode ser usado em locais onde a pesquisa binária não é viável e a pesquisa linear é muito cara. 
 
 <div>
-  <img src="https://github.com/classroom-ufersa/JumpSearch/blob/develop/Figura.png" width="500" height="500">
+  <img src="https://github.com/classroom-ufersa/JumpSearch/blob/develop/Figura.png" width="500" height="500" right = "500">
 </div>
