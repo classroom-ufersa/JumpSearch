@@ -4,6 +4,12 @@ Implemente um algoritmo que manipula um tipo estruturado de alunos e possui a fu
 
 Feito em Python e em C.
 
+## Tópicos
+
+- [Sobre o JumpSearch](#Sobre-o-JumpSarch)
+- [Análise Big-O](Análise-Big-O)
+
+
 ## Sobre o JumpSearch
 
 O jump search é um algoritmo de busca em um array ordenado que permite encontrar o valor de um elemento específico de forma eficiente. Ele é baseado na ideia de "saltar" para a próxima posição de busca em vez de percorrer todo o array item por item.
