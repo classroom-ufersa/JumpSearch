@@ -18,6 +18,7 @@
     - [Em C](#em-c)
     - [Em Python](#em-python)
 - [Análise Big-O](#análise-big-o)
+- [Referências](#referências)
 
 ## Sobre o JumpSearch
 
@@ -117,3 +118,10 @@ Isso coloca a pesquisa de salto entre a pesquisa linear (pior) com uma complexid
 
 ![Complexidade](https://github.com/classroom-ufersa/JumpSearch/blob/develop/Figura.png)
 
+### Referências:
+
+- [Colab](https://colab.research.google.com/)
+
+- [Pesquisa de salto em Python](https://stackabuse.com/jump-search-in-python/)
+
+- [Pensando em URLs no Github](https://medium.com/@afonsopacifer/pensando-em-urls-no-github-3517d97249d0)
