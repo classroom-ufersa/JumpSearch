@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "aluno.c"
 
 int main(void)
@@ -10,11 +8,16 @@ int main(void)
     char caminho[] = "C:\\Users\\jhoan\\Desktop\\VScode\\GitHub\\JumpSearch\\Jumpsearch.c\\data\\aluno.txt"; // caminho do arquivo txt(Varia de pc para pc)
     arquivo = fopen(caminho, "r");
     Aluno *alunos = (Aluno *)malloc(sizeof(Aluno)); // alocando dinamicamente
-    alunos = NULL;                                  // inicializnando o "vetor aluno"
+    if (alunos == NULL)
+    {
+        printf("[ERRO]");
+        exit(1);
+    }
+    alunos = NULL;// inicializnando o "vetor aluno"
     if (arquivo == NULL)
     {
         printf("Erro ao abrir arquivo!");
-        return 1;
+        exit(1);
     }
     printf("+----------------------------------------------------------------+\n"
            "|        Bem-vindo ao Programa de Gerenciamento de Alunos        |\n"
