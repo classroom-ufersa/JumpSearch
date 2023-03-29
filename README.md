@@ -6,8 +6,8 @@ Feito em Python e em C.
 
 ## Tópicos
 
-- [Sobre o JumpSearch](#Sobre-o-JumpSarch)
-- [Análise Big-O](Análise-Big-O)
+- [Sobre o JumpSearch](#Sobre-o-JumpSearch)
+- [Análise Big-O](#Análise-Big-O)
 
 
 ## Sobre o JumpSearch
@@ -20,7 +20,7 @@ A partir deste ponto, o algoritmo realiza uma busca linear nos elementos do bloc
 
 bem mais eficiente do que uma busca linear.
 
-## Análise Big-O
+## Análise Big O
 
 Vamos fazer uma análise mais geral de como o Jump Search funciona. Mais uma vez, consideraremos o pior cenário em que o elemento a ser encontrado está no final da lista.
 
