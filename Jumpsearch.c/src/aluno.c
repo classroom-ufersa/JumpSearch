@@ -3,6 +3,7 @@
 #include <string.h>
 #include <math.h>
 #include <time.h>
+#include <ctype.h>
 
 typedef union documento
 {
@@ -145,6 +146,19 @@ FILE *cadastrarAluno(FILE *arquivo, char caminho[])
     // Ler os dados do aluno
     printf("Digite o nome do aluno: ");
     scanf(" %[^\n]s", aluno.nome);
+    // Formatando nome
+    int tamanhodonome = strlen(aluno.nome);
+    aluno.nome[0] = toupper(aluno.nome[0]); // convertendo o primeiro caractere para maiusculo
+    // Percorra os caracteres restantes e convertendo para minúscula
+    for (i = 1; i < tamanhodonome; i++)
+    {
+        aluno.nome[i] = tolower(aluno.nome[i]);
+        // Verificando se o caractere anterior é um espaço em branco Se sim, converte o caractere atual para maiúscula
+        if (aluno.nome[i - 1] == ' ')
+        {
+            aluno.nome[i] = toupper(aluno.nome[i]);
+        }
+    }
     printf("Digite a matricula do aluno: ");
     scanf("%d", &aluno.matricula);
     aluno.media = 0.0;

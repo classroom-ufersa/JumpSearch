@@ -2,6 +2,7 @@
 
 int main(void)
 {
+    // declarando variaveis
     clock_t inicio;
     double tempo;
     int controle, totaldealunos = 0, j;
@@ -21,6 +22,7 @@ int main(void)
         printf("Erro ao abrir arquivo!");
         exit(1);
     }
+    alunos = lerArquivo(alunos, caminho, &totaldealunos); //inicialização inicial do vetor alunos com dados do arquivo
     printf("+----------------------------------------------------------------+\n"
            "|        Bem-vindo ao Programa de Gerenciamento de Alunos        |\n"
            "|                                                                |\n"
