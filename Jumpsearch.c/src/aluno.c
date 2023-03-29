@@ -30,13 +30,13 @@ Aluno *BuscarAlunoPelaMatricula(Aluno *alunos, int qnta)
 {
     int matricula;
     int salto = sqrt(qnta); // Calcula o tamanho do salto para o algoritmo Jump Search
-    int i, j;
+    int i = 0, j = 0;
 
     // Verificar se o array de alunos está vazio
     if (alunos == NULL)
     {
         printf("Nenhum aluno cadastrado.\n"); // Imprime uma mensagem para informar que não há alunos cadastrados
-        return NULL; // Retorna NULL para indicar que não foi encontrado nenhum aluno
+        return NULL;                          // Retorna NULL para indicar que não foi encontrado nenhum aluno
     }
 
     // Pedir ao usuário a matrícula do aluno que deseja buscar
@@ -47,14 +47,13 @@ Aluno *BuscarAlunoPelaMatricula(Aluno *alunos, int qnta)
     qsort(alunos, qnta, sizeof(Aluno), compararMatriculas); // Ordena o array de alunos usando o algoritmo Quicksort
 
     // Aplicar o algoritmo Jump Search para encontrar o índice do aluno no array
-    i = 0;
     while (i < qnta && alunos[i].matricula < matricula) // Executa um loop enquanto a matrícula do aluno atual for menor do que a matrícula procurada
     {
         i += salto; // Incrementa o índice do aluno com base no tamanho do salto
     }
     if (i >= qnta || alunos[i].matricula > matricula) // Se o índice do aluno atual for maior ou igual ao tamanho do array de alunos ou a matrícula do aluno atual for maior do que a matrícula procurada
     {
-        i -= salto; // Decrementa o índice do aluno com base no tamanho do salto
+        i -= salto;                                 // Decrementa o índice do aluno com base no tamanho do salto
         for (j = i; j < i + salto && j < qnta; j++) // Executa um loop para percorrer os alunos próximos ao índice do aluno atual, no intervalo [i, i+salto)
         {
             if (alunos[j].matricula == matricula) // Se a matrícula do aluno atual for igual à matrícula procurada
@@ -72,7 +71,6 @@ Aluno *BuscarAlunoPelaMatricula(Aluno *alunos, int qnta)
     return NULL; // Retorna NULL para indicar que não foi encontrado nenhum aluno
 }
 
-
 // Função auxiliar para comparar dois nomes de alunos
 int compararNomes(const void *a, const void *b)
 {
@@ -86,7 +84,7 @@ Aluno *BuscarAlunoPeloNome(Aluno *alunos, int qnta)
 {
     char nome[100];
     int salto = sqrt(qnta);
-    int i, j;
+    int i = 0, j = 0;
 
     // Verificar se o array de alunos está vazio
     if (alunos == NULL)
@@ -103,7 +101,6 @@ Aluno *BuscarAlunoPeloNome(Aluno *alunos, int qnta)
     qsort(alunos, qnta, sizeof(Aluno), compararNomes);
 
     // Aplicar o algoritmo Jump Search para encontrar o índice do aluno no array
-    i = 0;
     while (i < qnta && strcmp(alunos[i].nome, nome) < 0)
     {
         i += salto;
