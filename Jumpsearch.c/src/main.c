@@ -2,6 +2,8 @@
 
 int main(void)
 {
+    clock_t inicio;
+    double tempo;
     int controle, totaldealunos = 0, j;
     Aluno *alunotemporario;
     FILE *arquivo;
@@ -13,7 +15,7 @@ int main(void)
         printf("[ERRO]");
         exit(1);
     }
-    alunos = NULL;// inicializnando o "vetor aluno"
+    alunos = NULL; // inicializnando o "vetor aluno"
     if (arquivo == NULL)
     {
         printf("Erro ao abrir arquivo!");
@@ -53,7 +55,11 @@ int main(void)
             cadastrarAluno(arquivo, caminho);
             break;
         case 4:
+            inicio = clock();
             alunotemporario = BuscarAlunoPelaMatricula(alunos, totaldealunos);
+            tempo = (double)(clock() - inicio) / CLOCKS_PER_SEC;
+            tempo = tempo * 1000; // Milisegundos
+            printf("Tempo de execucao: %.1f Milisegundos\n", tempo);
             if (alunotemporario != NULL)
             {
                 printf("\nAluno Encontrado!\n\n");
@@ -80,7 +86,11 @@ int main(void)
             }
             break;
         case 5:
+            inicio = clock();
             alunotemporario = BuscarAlunoPeloNome(alunos, totaldealunos);
+            tempo = (double)(clock() - inicio) / CLOCKS_PER_SEC;
+            tempo = tempo * 1000; // Milisegundos
+            printf("Tempo de execucao: %.1f Milisegundos\n", tempo);
             if (alunotemporario != NULL)
             {
                 printf("\nAluno Encontrado!\n\n");
