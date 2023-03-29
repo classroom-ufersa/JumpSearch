@@ -1,14 +1,18 @@
-# Grupo 6: Busca De Strings utilizando JumpSearch
+<h1 align="center"> Grupo 6: Busca De Strings utilizando JumpSearch 
+</h1>
 
-Implemente um algoritmo que manipula um tipo estruturado de alunos e possui a funcionalidade de buscar alunos em um arquivo.
+## Problemática:
 
-Feito em Python e em C.
+    Implemente um algoritmo que manipula um tipo estruturado de alunos e possui a funcionalidade de buscar alunos em um arquivo.
+
+- probelmatica resolvida utilizando as linguagens `Python` e `C`.
 
 ## Tópicos
 
 - [Sobre o JumpSearch](#Sobre-o-JumpSearch)
-- [Análise Big-O](#análise-big-o)
 - [Etapas de pesquisa de salto](#etapas-de-pesquisa-de-salto)
+- [Entradas](#entradas)
+- [Análise Big-O](#análise-big-o)
 
 ## Sobre o JumpSearch
 
@@ -40,5 +44,7 @@ Para obter uma lista de nelementos e um tamanho de bloco de m, a Pesquisa de sal
 Isso coloca a pesquisa de salto entre a pesquisa linear (pior) com uma complexidade de tempo de execução de O(n)e a pesquisa binária (melhor) com uma complexidade de tempo de execução de O(log n). Portanto, o Jump Search pode ser usado em locais onde a pesquisa binária não é viável e a pesquisa linear é muito cara. 
 
 <div>
-  <img src="https://github.com/classroom-ufersa/JumpSearch/blob/develop/Figura.png" width="500" height="500" right = "500">
+  <img src="https://github.com/classroom-ufersa/JumpSearch/blob/develop/Figura.png" width="500" height="500">
 </div>
+
+![Complexidade](https://github.com/classroom-ufersa/JumpSearch/blob/develop/Figura.png)
