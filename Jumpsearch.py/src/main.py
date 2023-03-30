@@ -30,8 +30,11 @@ while op != 4:
     
     elif op == 3:
         nome = input('Digite o nome do aluno que deseja ver os dados: ')
-        Aluno1 = Aluno1()
-        busca_aluno = Aluno1.jump_search(nome)
+        matricula = int(input('Digite a matricula: '))
+        documento = int(input('Digite seu documento: '))
+        Alunoz = Aluno1()
+        busca_aluno = Alunoz.jump_search(nome, matricula, documento)
+        print(busca_aluno)
     
     elif op == 4:
         print('Obrigado por usar esse programa!')
