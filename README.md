@@ -30,6 +30,8 @@ A partir deste ponto, o algoritmo realiza uma busca linear nos elementos do bloc
 
 bem mais eficiente do que uma busca linear.
 
+![JumpSearch](https://github.com/classroom-ufersa/JumpSearch/blob/main/explica%20jump.png)
+
 ## Etapas de pesquisa de salto
 
 ### Entradas:
