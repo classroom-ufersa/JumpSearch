@@ -55,18 +55,18 @@ class Aluno1:
 
         result.close
 
-    def jump_search(self, nome, documento, matricula):
-        busca = f"{nome}   {matricula}   {documento}"
-        with open('c:\\Users\\Moises\\OneDrive\\Área de Trabalho\\Jump\\JumpSearch\\Jumpsearch.py\\src\\alunos.txt', 'r') as arquivo:
-            linhas = arquivo.readlines()
-            n = len(linhas)
-            jump = int(math.sqrt(n))
-            prev = 0
-            while jump < n and linhas[jump] <= busca:
+    def jump_search(self, nome, matricula, documento): #função chamada "jump_search" que recebe três parâmetros
+        busca = f"{nome} {matricula} {documento}" #cria uma string de busca combinando os parâmetros
+        with open('c:\\Users\\Moises\\OneDrive\\Área de Trabalho\\Jump\\JumpSearch\\Jumpsearch.py\\src\\alunos.txt', 'r') as arquivo: #abre o arquivo no modo leitura
+            linhas = arquivo.readlines() #atribui seu conteúdo a uma variável "linhas"
+            n = len(linhas) #recebe o número de linhas do arquivo "Aluno.txt"
+            jump = int(math.sqrt(n)) #Define o tamanho do salto
+            prev = 0 #inicializada com 0 para armazenar a posição anterior em que a busca foi feita
+            while jump < n and linhas[jump] <= busca: #Se a linha atual for menor do que "busca", o loop continua com um salto
                 prev = jump
                 jump += jump
-            for i in range(prev, min(jump, n)):
-                if linhas[i].strip() == busca:
+            for i in range(prev, min(jump, n)): #loop por cada linha dentro desse intervalo
+                if linhas[i].strip() == busca: #verifica se ela é igual à string de busca "busca"
                     aluno = Aluno(nome, matricula, documento)
-                    return f"Nome: {aluno.nome}, Documento: {aluno.documento}, Matrícula: {aluno.matricula}"
-        return None
+                    return f"Nome: {aluno.nome}, Matrícula: {aluno.matricula}, Documento: {aluno.documento}" #cria um objeto aluno e retorna uma string com os detalhes do aluno
+        return None #caso a busca não seja bem sucedida
