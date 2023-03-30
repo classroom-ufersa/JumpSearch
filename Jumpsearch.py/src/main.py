@@ -12,7 +12,7 @@ print("+----------------------------------------------------------------+\n"
            "+----------------------------------------------------------------+");
 while op != 4:
     
-    op = int(input('\nMenu\n1 - Cadastro de alunos\n2 - Listar alunos cadastrados\n3 - Buscar aluno\n4 - Fechar programa\nDigite sua opção: '))
+    op = int(input('\nMenu\n1 - Matricular alunos\n2 - Listar alunos matriculados\n3 - Buscar aluno\n4 - Fechar programa\nDigite sua opção: '))
 
     if op == 1:
         nome = input('Digite o nome do aluno: ')
