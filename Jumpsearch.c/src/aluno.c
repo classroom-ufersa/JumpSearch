@@ -1,9 +1,9 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <math.h>
-#include <time.h>
-#include <ctype.h>
+#include <stdio.h> //funções basicas da linguagem c
+#include <stdlib.h> //para fazer alocação dinamica
+#include <string.h> //para usar strings
+#include <math.h> //operações algebricas
+#include <time.h> //Tempo de execução
+#include <ctype.h> //manipulação de caracteres
 
 typedef union documento
 {

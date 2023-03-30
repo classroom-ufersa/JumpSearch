@@ -64,6 +64,8 @@ Bem mais eficiente do que uma busca linear.
 
 ### Em C: 
 
+- Busca por matricula:
+
 ```c
 // Aplicar o algoritmo Jump Search para encontrar o índice do aluno no array
     while (i < qnta && alunos[i].matricula < matricula) // Executa um loop enquanto a matrícula do aluno atual for menor do que a matrícula procurada
@@ -90,6 +92,35 @@ Bem mais eficiente do que uma busca linear.
     return NULL; // Retorna NULL para indicar que não foi encontrado nenhum aluno
 }
 ```
+- Busca por nome: 
+
+```c
+// Aplicar o algoritmo Jump Search para encontrar o índice do aluno no array
+    while (i < qnta && strcmp(alunos[i].nome, nome) < 0)
+    {
+        i += salto;
+    }
+    if (i >= qnta || strcmp(alunos[i].nome, nome) > 0)
+    {
+        i -= salto;
+        for (j = i; j < i + salto && j < qnta; j++)
+        {
+            if (strcmp(alunos[j].nome, nome) == 0)
+            {
+                return &alunos[j];
+            }
+        }
+        return NULL;
+    }
+    else if (strcmp(alunos[i].nome, nome) == 0)
+    {
+        return &alunos[i];
+    }
+
+    return NULL;
+}
+```
+
 ### Em Python:
 
 ```py
