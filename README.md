@@ -5,7 +5,7 @@
 
     Implemente um algoritmo que manipula um tipo estruturado de alunos e possui a funcionalidade de buscar alunos em um arquivo.
 
-- problemática resolvida utilizando as linguagens `Python` e `C`.
+- Problemática resolvida utilizando as linguagens `Python` e `C`.
 
 ## Tópicos
 
@@ -29,7 +29,7 @@ O algoritmo começa por definir o tamanho do "salto" que será utilizado para bu
 
 A partir deste ponto, o algoritmo realiza uma busca linear nos elementos do bloco anterior até encontrar o valor desejado ou determinar que ele não existe no array.
 
-bem mais eficiente do que uma busca linear.
+Bem mais eficiente do que uma busca linear.
 
 ![JumpSearch](https://github.com/classroom-ufersa/JumpSearch/blob/main/explica%20jump.png)
 
