@@ -7,6 +7,13 @@
 
 - Problemática resolvida utilizando as linguagens `Python` e `C`.
 
+
+#### Desenvolvedores: 
+- [Caio Moisés Vieira Cavalcante](https://github.com/caiomoises)
+- [Jhoan Fernandes de Oliveira](https://github.com/JhoanDev)
+- [Luis Felipe Lima Tomaz](https://github.com/lftmaz)
+- [Abner Gama Torres](https://github.com/bnerTT)
+
 ## Tópicos
 
 - [Sobre o JumpSearch](#Sobre-o-JumpSearch)
