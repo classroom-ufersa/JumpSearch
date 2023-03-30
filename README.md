@@ -18,6 +18,7 @@
     - [Em C](#em-c)
     - [Em Python](#em-python)
 - [Análise Big-O](#análise-big-o)
+- [Comparativo](#comparativo)
 - [Referências](#referências)
 
 ## Sobre o JumpSearch
@@ -130,7 +131,7 @@ Calculando:
 
 Para obter uma lista de `n` elementos e um tamanho de bloco de `m`, a Pesquisa de salto realizaria `n/m` saltos de maneira ideal. Considerando o tamanho do bloco √n, o tempo de execução também seria `O(√n)`.
 
-
+### Comparativo
 
 Isso coloca a pesquisa de salto entre a pesquisa linear (pior) com uma complexidade de tempo de execução de O(n)e a pesquisa binária (melhor) com uma complexidade de tempo de execução de O(log n). Portanto, o Jump Search pode ser usado em locais onde a pesquisa binária não é viável e a pesquisa linear é muito cara. 
 
