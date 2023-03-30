@@ -23,7 +23,7 @@
 
 ## Sobre o JumpSearch
 
-O jump search é um algoritmo de busca em um array ordenado que permite encontrar o valor de um elemento específico de forma eficiente. Ele é baseado na ideia de "saltar" para a próxima posição de busca em vez de percorrer todo o array item por item.
+O jump search é um algoritmo de busca em um array ordenado, que permite encontrar o valor de um elemento específico de forma eficiente. Ele é baseado na ideia de "saltar" para a próxima posição de busca em vez de percorrer todo o array item por item.
 
 O algoritmo começa por definir o tamanho do "salto" que será utilizado para buscar o elemento desejado. Em seguida, ele realiza saltos sequenciais até encontrar uma posição cujo valor seja maior ou igual ao valor desejado.
 
@@ -42,19 +42,19 @@ bem mais eficiente do que uma busca linear.
 
 ### Saída:
 
-- Índice da chave de pesquisa correspondente ou `-1` se `item` não for encontrado
+- Índice da chave de pesquisa correspondente `item`  ou `-1` se não for encontrado
 
 ## Passos
 
-- Passo 1: Encontre o comprimento da lista de fontes classificadas `-n = len(A)`
-- Passo 2: Determine o Tamanho de Bloco adequado `-m = √n`
-- Passo 3: A iteração começa no índice de `i = 0` ate `item` com uma etapa de me continua até que a janela chegue ao final da lista.
+- Passo 1: Encontre o comprimento da lista de fontes classificadas `n = len(A)`
+- Passo 2: Determine o Tamanho de Bloco adequado `m = √n`
+- Passo 3: A iteração começa no índice de `i = 0` ate `item` com uma etapa que continua até que a janela chegue ao final da lista.
 - Passo 4: Compare `A[i+m]` ( `i+m` é o último índice de um bloco) e o `item`
 
     - a) Se `A[i+m] == item`, retorno `i+m`;
 
     - b) Se `A[i+m] > item`, proceda à busca linear dentro do bloco conhecido como lista derivada `B = A[i: i+m]`
-        - Itere e compare cada elemento da lista com a chave de pesquisa e retorne a correspondência, ise encontrada; Saídas de código
+        - Itere e compare cada elemento da lista com a chave de pesquisa e retorne a correspondência, `i` se encontrada; Saídas de código
 
     - c) Se `A[i+m] < item`, Prossiga com a próxima iteração para a Etapa 4
 
@@ -93,21 +93,21 @@ bem mais eficiente do que uma busca linear.
 ### Em Python:
 
 ```py
-def jump_search(self, nome, documento, matricula):
-        busca = f"{nome}   {matricula}   {documento}"
-        with open('c:\\Users\\Moises\\OneDrive\\Área de Trabalho\\Jump\\JumpSearch\\Jumpsearch.py\\src\\alunos.txt', 'r') as arquivo:
-            linhas = arquivo.readlines()
-            n = len(linhas)
-            jump = int(math.sqrt(n))
-            prev = 0
-            while jump < n and linhas[jump] <= busca:
+def jump_search(self, nome, documento, matricula): #função chamada "jump_search" que recebe três parâmetros
+        busca = f"{nome}   {matricula}   {documento}" #cria uma string de busca combinando os parâmetros
+        with open('Aluno.txt', 'r') as arquivo: #abre o arquivo "Aluno.txt" no modo leitura
+            linhas = arquivo.readlines() #atribui seu conteúdo a uma variável "linhas"
+            n = len(linhas) #recebe o número de linhas do arquivo "Aluno.txt"
+            jump = int(math.sqrt(n)) #Define o tamanho do salto
+            prev = 0 #inicializada com 0 para armazenar a posição anterior em que a busca foi feita
+            while jump < n and linhas[jump] <= busca: #Se a linha atual for menor do que "busca", o loop continua com um salto
                 prev = jump
                 jump += jump
-            for i in range(prev, min(jump, n)):
-                if linhas[i].strip() == busca:
+            for i in range(prev, min(jump, n)): #loop por cada linha dentro desse intervalo
+                if linhas[i].strip() == busca: #verifica se ela é igual à string de busca "busca"
                     aluno = Aluno(nome, matricula, documento)
-                    return f"Nome: {aluno.nome}, Documento: {aluno.documento}, Matrícula: {aluno.matricula}"
-        return None
+                    return f"Nome: {aluno.nome}, Documento: {aluno.documento}, Matrícula: {aluno.matricula}" #cria um objeto aluno e retorna uma string com os detalhes do aluno
+        return None #caso a busca não seja bem sucedida
 ```
 
 
@@ -141,6 +141,6 @@ Isso coloca a pesquisa de salto entre a pesquisa linear (pior) com uma complexid
 
 - [Colab](https://colab.research.google.com/)
 
-- [Pesquisa de salto em Python](https://stackabuse.com/jump-search-in-python/)
+- [Jump Search in Python](https://stackabuse.com/jump-search-in-python/)
 
 - [Pensando em URLs no Github](https://medium.com/@afonsopacifer/pensando-em-urls-no-github-3517d97249d0)
