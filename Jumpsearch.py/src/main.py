@@ -1,40 +1,116 @@
-from alunos import Aluno
-from jump import Aluno1
+import os
+from aluno import *
+import time
+import os
+import time
 
-op = 0 
+# declarando variaveis
+inicio = 0
+tempo = 0
+controle = 0
+totaldealunos = 0
+j = 0
+alunos = []
+caminho = "C:\\Users\\jhoan\\Desktop\\VScode\\GitHub\\JumpSearch\\JumpSearch07.py\\data\\aluno.txt"
+# Verificar se o arquivo de alunos já existe
+if os.path.isfile(caminho):
+    # Ler os alunos do arquivo
+    arquivo = open(caminho, "r")
+    for linha in arquivo:
+        campos = linha.strip().split("\t")
+        nome = campos[0]
+        matricula = int(campos[1])
+        cpf = campos[2]
+        rg = campos[3]
+        notas = [float(campos[4]), float(campos[5]), float(campos[6])]
+        aluno = Aluno(nome, matricula, cpf, rg, notas)
+        alunos.append(aluno)
+    arquivo.close()
+alunotemporario = None
 
-print("+----------------------------------------------------------------+\n"
-           "|        Bem-vindo ao Programa de Gerenciamento de Alunos        |\n"
-           "|                                                                |\n"
-           "|             Autores: Jhoan   Abner   Caio    Tomaz             |\n"
-           "|                                                                |\n"
-           "|                          Versao: 2.0                           |\n"
-           "+----------------------------------------------------------------+");
-while op != 4:
-    
-    op = int(input('\nMenu\n1 - Matricular alunos\n2 - Listar alunos matriculados\n3 - Buscar aluno\n4 - Fechar programa\nDigite sua opção: '))
+# inicialização inicial do vetor alunos com dados do arquivo
 
-    if op == 1:
-        nome = input('Digite o nome do aluno: ')
-        matricula = int(input('Digite a matricula do aluno: '))
-        documento = int(input('Digite o documento do aluno: '))
-        aluno = Aluno(nome,matricula,documento)
-        Aluno1 = Aluno1()
-        Aluno1.cadastrar_aluno(aluno)
-        Aluno1.ordenar_alunos()
-        
-    elif op == 2:
-        print('\n')
-        Aluno1 = Aluno1()
-        Aluno1.listar_aluno()
-    
-    elif op == 3:
-        nome = input('Digite o nome do aluno que deseja ver os dados: ')
-        matricula = int(input('Digite a matricula: '))
-        documento = int(input('Digite seu documento: '))
-        Alunoz = Aluno1()
-        busca_aluno = Alunoz.jump_search(nome, matricula, documento)
-        print(busca_aluno)
-    
-    elif op == 4:
-        print('Obrigado por usar esse programa!')
+print("+----------------------------------------------------------------+")
+print("|        Bem-vindo ao Programa de Gerenciamento de Alunos        |")
+print("|                                                                |")
+print("|             Autores: Jhoan   Abner   Caio    Tomaz             |")
+print("|                                                                |")
+print("|                          Versao: 2.0                           |")
+print("+----------------------------------------------------------------+\n")
+
+while controle != 6:
+    print("Menu:")
+    print("========================================")
+    print("[1] Atualizar sistema")
+    print("[2] Listar Alunos")
+    print("[3] Matricular alunos")
+    print("[4] Buscar aluno por matricula")
+    print("[5] Buscar aluno pelo nome")
+    print("[6] Sair")
+    print("========================================")
+
+    controle = int(input("Digite o numero da opcao desejada: "))
+    os.system("cls" if os.name == "nt" else "clear")
+
+    if controle == 1:
+        alunos = ler_arquivo(caminho)
+        print("Atualizado!\n\n")
+
+    elif controle == 2:
+        ListarAlunos(alunos)
+
+    elif controle == 3:
+        cadastrarAluno(arquivo, caminho)
+
+    elif controle == 4:
+        inicio = time.time()
+        alunotemporario = BuscarAlunoPelaMatricula(alunos)
+        tempo = (time.time() - inicio) * 1000  # Milisegundos
+        print(f"Tempo de execucao: {tempo:.1f} Milisegundos\n")
+
+        if alunotemporario:
+            print("\nAluno Encontrado!\n")
+            print(f"Nome: {alunotemporario.nome}")
+            print(f"Matricula: {alunotemporario.matricula}")
+            
+            if len(alunotemporario.documento.cpf) == 14:
+                print(f"CPF: {alunotemporario.documento.cpf}")
+                
+            elif len(alunotemporario.documento.rg) == 11:
+                print(f"RG: {alunotemporario.documento.rg}")
+            print("Notas: ", end="")
+            
+            for j in range(3):
+                print(f"{alunotemporario.notas[j]:.1f} ", end="")
+            print(f"\nMedia: {alunotemporario.media:.1f}\n")
+
+        else:
+            print("Aluno Nao foi encontrado!\n")
+
+    elif controle == 5:
+        inicio = time.time()
+        alunotemporario = BuscarAlunoPeloNome(alunos)
+        tempo = (time.time() - inicio) * 1000  # Milisegundos
+        print(f"Tempo de execucao: {tempo:.1f} Milisegundos")
+        if alunotemporario:
+            print("\nAluno Encontrado!\n")
+            print(f"Nome: {alunotemporario.nome}")
+            print(f"Matricula: {alunotemporario.matricula}")
+            
+            if len(alunotemporario.documento.cpf) == 14:
+                print(f"CPF: {alunotemporario.documento.cpf}")
+                
+            elif len(alunotemporario.documento.rg) == 11:
+                print(f"RG: {alunotemporario.documento.rg}")
+            print("Notas: ", end="")
+            
+            for j in range(3):
+                print(f"{alunotemporario.notas[j]:.1f} ", end="")
+            print(f"\nMedia: {alunotemporario.media:.1f}\n")
+
+        else:
+            print("Aluno Nao foi encontrado!\n")
+    elif controle == 6:
+        print("Obrigado por usar meu programa!")
+    else:
+        print("Opcao invalida!")
