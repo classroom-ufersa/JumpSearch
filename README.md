@@ -26,6 +26,7 @@
     - [Em Python](#em-python)
 - [Análise Big-O](#análise-big-o)
 - [Comparativo](#comparativo)
+- [Video explicando o codigo na linguagem C](#video-explicando-o-codigo-na-linguagem-c)
 - [Referências](#referências)
 
 ## Sobre o JumpSearch
@@ -177,7 +178,7 @@ Isso coloca a pesquisa de salto entre a pesquisa linear (pior) com uma complexid
 
 ### Video explicando o codigo na linguagem C
 
-![Video](https://youtu.be/oQqEzxSc62U)
+- [Link para vídeo de explicação](https://youtu.be/oQqEzxSc62U)
 
 ### Referências:
 
