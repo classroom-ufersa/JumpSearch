@@ -37,16 +37,16 @@ Aluno *BuscarAlunoPelaMatricula(Aluno *alunos, int qnta)
     // Verificar se o array de alunos está vazio
     if (alunos == NULL)
     {
-        printf("Nenhum aluno cadastrado.\n"); // Imprime uma mensagem para informar que não há alunos cadastrados
-        return NULL;                          // Retorna NULL para indicar que não foi encontrado nenhum aluno
+        printf("Nenhum aluno cadastrado.\n");
+        return NULL;
     }
 
     // Pedir ao usuário a matrícula do aluno que deseja buscar
     printf("Digite a matricula do aluno que deseja buscar: ");
-    scanf("%d", &matricula); // Lê a matrícula do aluno que o usuário deseja buscar
+    scanf("%d", &matricula);
 
     // Ordenar o array de alunos em ordem crescente pela matrícula
-    qsort(alunos, qnta, sizeof(Aluno), compararMatriculas); // Ordena o array de alunos usando o algoritmo Quicksort
+    qsort(alunos, qnta, sizeof(Aluno), compararMatriculas); // Ordena o array de alunos
 
     // Aplicar o algoritmo Jump Search para encontrar o índice do aluno no array
     while (i < qnta && alunos[i].matricula < matricula) // Executa um loop enquanto a matrícula do aluno atual for menor do que a matrícula procurada
