@@ -12,6 +12,7 @@ totaldealunos = 0
 j = 0
 alunos = []
 caminho = "c:\\Users\\Moises\\OneDrive\\Área de Trabalho\\Jump\\JumpSearch\\Jumpsearch.py\\data\\aluno.txt"
+
 # Verificar se o arquivo de alunos já existe
 if os.path.isfile(caminho):
     # Ler os alunos do arquivo
