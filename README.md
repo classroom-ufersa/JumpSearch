@@ -175,6 +175,10 @@ Isso coloca a pesquisa de salto entre a pesquisa linear (pior) com uma complexid
 
 ![Complexidade](https://github.com/classroom-ufersa/JumpSearch/blob/develop/Figura.png)
 
+### Video explicando o codigo na linguagem C
+
+![Video](https://youtu.be/oQqEzxSc62U)
+
 ### Referências:
 
 - [Colab](https://colab.research.google.com/)
