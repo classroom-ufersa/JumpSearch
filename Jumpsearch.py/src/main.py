@@ -1,17 +1,40 @@
-import csv
+from alunos import Aluno
+from jump import Aluno1
 
-# leitura da lista de strings a partir do arquivo CSV
-arquivo = "c:\\Users\\Moises\\OneDrive\\Área de Trabalho\\Jump\\JumpSearch\\Jumpsearch.py\\dataset\\alunos.csv"
-with open(arquivo, "r") as file:
-    reader = csv.reader(file)
-    lista_nomes = [row[0] for row in reader]
+op = 0 
 
-# entrada do usuário da nome a ser buscada
-nome = input("Digite a nome a ser buscada: ")
+print("+----------------------------------------------------------------+\n"
+           "|        Bem-vindo ao Programa de Gerenciamento de Alunos        |\n"
+           "|                                                                |\n"
+           "|             Autores: Jhoan   Abner   Caio    Tomaz             |\n"
+           "|                                                                |\n"
+           "|                          Versao: 2.0                           |\n"
+           "+----------------------------------------------------------------+");
+while op != 4:
+    
+    op = int(input('\nMenu\n1 - Matricular alunos\n2 - Listar alunos matriculados\n3 - Buscar aluno\n4 - Fechar programa\nDigite sua opção: '))
 
-# busca da nome na lista
-index = jump_search(nome, lista_nomes)
-if index != -1:
-    print(f"{nome} encontrada na posição {index} da lista")
-else:
-    print(f"{nome} não encontrada na lista")
+    if op == 1:
+        nome = input('Digite o nome do aluno: ')
+        matricula = int(input('Digite a matricula do aluno: '))
+        documento = int(input('Digite o documento do aluno: '))
+        aluno = Aluno(nome,matricula,documento)
+        Aluno1 = Aluno1()
+        Aluno1.cadastrar_aluno(aluno)
+        Aluno1.ordenar_alunos()
+        
+    elif op == 2:
+        print('\n')
+        Aluno1 = Aluno1()
+        Aluno1.listar_aluno()
+    
+    elif op == 3:
+        nome = input('Digite o nome do aluno que deseja ver os dados: ')
+        matricula = int(input('Digite a matricula: '))
+        documento = int(input('Digite seu documento: '))
+        Alunoz = Aluno1()
+        busca_aluno = Alunoz.jump_search(nome, matricula, documento)
+        print(busca_aluno)
+    
+    elif op == 4:
+        print('Obrigado por usar esse programa!')
