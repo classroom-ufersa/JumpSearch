@@ -1,3 +1,4 @@
+#importando as bibliotecas
 import streamlit as st
 import numpy as np 
 import pandas as pd 
@@ -12,10 +13,22 @@ if selecionar_pagina == 'Pagina inicial':
     selecionar = st.selectbox('Selecione o tipo de busca que deseja: ',['Matricular alunos','Listar alunos','Buscar aluno por nome', 'Buscar aluno por matricula'])
     if selecionar == 'Matricular alunos':
         with st.form(key='Aluno'):
-            input_name = st.text_input(label='Nome do Aluno')
+            input_name = st.text_input(label='Nome do aluno')
             input_matricula = st.number_input(label='Número da matricula', format= '%d', step=1)
             input_documento = st.number_input(label='Número do documento', format='%d', step=1)
             input_enviar = st.form_submit_button('Enviar')
+    if selecionar == 'Listar alunos':
+        df = pd.read_csv('c:\\Users\\Moises\\OneDrive\\Área de Trabalho\\Jump\\JumpSearch\\Jumpsearch.py\\data\\aluno.csv')
+        st.subheader('Lista de alunos matriculados:')
+        st.write('Nome: ', input_name)
+    if selecionar == 'Buscar aluno por nome':
+        with st.form(key='Aluno'):
+            input_name = st.text_input(label='Nome do aluno')
+            input_enviar = st.form_submit_button('Buscar')
+    if selecionar == 'Buscar aluno por matricula':
+        with st.form(key='Aluno'):
+            input_matricula = st.number_input(label='Número da matricula', format= '%d', step=1)
+            input_enviar = st.form_submit_button('Buscar')
     if input_enviar:
         st.write(f'Nome: {input_name}')
         st.write(f'Matricula: {input_matricula}')
