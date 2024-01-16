@@ -1,6 +1,6 @@
-#include <stdio.h>
+#include "../System/system.h"
 
-typedef struct documento Documento;
+typedef union documento Documento;
 
 typedef struct aluno Aluno;
 

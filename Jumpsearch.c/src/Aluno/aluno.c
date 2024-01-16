@@ -1,24 +1,19 @@
-#include <stdio.h> //funções basicas da linguagem c
-#include <stdlib.h> //para fazer alocação dinamica
-#include <string.h> //para usar strings
-#include <math.h> //operações algebricas
-#include <time.h> //Tempo de execução
-#include <ctype.h> //manipulação de caracteres
+#include "aluno.h"
 
-typedef union documento
+union documento
 {
     char cpf[15];
     char rg[12];
-} Documento;
+};
 
-typedef struct aluno
+struct aluno
 {
     char nome[100];
     int matricula;
     Documento documento;
     float notas[3];
     float media;
-} Aluno;
+};
 
 // Função auxiliar para comparar duas matrículas de alunos
 int compararMatriculas(const void *a, const void *b)

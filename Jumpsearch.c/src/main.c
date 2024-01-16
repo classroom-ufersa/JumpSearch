@@ -43,7 +43,6 @@ int main(void)
         printf("========================================\n");
         printf("Digite o numero da opcao desejada: ");
         scanf("%d", &controle);
-        system("cls");
         switch (controle)
         {
         case 1:
