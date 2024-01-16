@@ -15,7 +15,55 @@ struct aluno
     float media;
 };
 
-// Função auxiliar para comparar duas matrículas de alunos
+void cadastrar_aluno(const char caminho[], int *mat)
+{
+    Aluno aluno;
+    int i;
+    char opcao_documento;
+
+    FILE *arquivo = fopen(caminho, "a");
+
+    if (arquivo == NULL)
+    {
+        print_red("Erro ao abrir o arquivo.\n");
+        exit(1);
+    }
+
+    print_yellow("Digite o nome do aluno: ");
+    scanf(" %[^\n]s", aluno.nome);
+
+    corrige_nome(aluno.nome);
+    aluno.matricula = (*mat)++ + 100;
+    aluno.media = 0.0;
+
+    printf("Digite '1' para cadastrar o CPF ou '2' para cadastrar o RG\n");
+    opcao_documento = le_opcao(OPCAO1, OPCAO2);
+    if (opcao_documento == OPCAO1)
+        ler_cpf(aluno.documento.cpf);
+    else
+        ler_rg(aluno.documento.rg);
+    printf("\n");
+    for (i = 0; i < 3; i++)
+    {
+        printf("Nota %d\n", i + 1);
+        aluno.notas[i] = ler_nota();
+        aluno.media += aluno.notas[i];
+    }
+    aluno.media = aluno.media / 3;
+
+    if (opcao_documento == '1')
+    {
+        fprintf(arquivo, "%s\t%d\t%s\t%.1f\t%.1f\t%.1f\t%.1f\n", aluno.nome, aluno.matricula, aluno.documento.cpf, aluno.notas[0], aluno.notas[1], aluno.notas[2], aluno.media);
+    }
+    else
+    {
+        fprintf(arquivo, "%s\t%d\t%s\t%.1f\t%.1f\t%.1f\t%.1f\n", aluno.nome, aluno.matricula, aluno.documento.rg, aluno.notas[0], aluno.notas[1], aluno.notas[2], aluno.media);
+    }
+
+    fclose(arquivo);
+    print_green("Aluno cadastrado com sucesso.\n\n");
+}
+
 int comparar_matriculas(const void *a, const void *b)
 {
     Aluno *alunoA = (Aluno *)a;
@@ -26,7 +74,7 @@ int comparar_matriculas(const void *a, const void *b)
 Aluno *buscar_aluno_pela_matricula(Aluno *alunos, int qnta)
 {
     int matricula;
-    int salto = sqrt(qnta); // Calcula o tamanho do salto para o algoritmo Jump Search
+    int salto = sqrt(qnta);
     int i = 0, j = 0;
 
     // Verificar se o array de alunos está vazio
@@ -68,7 +116,6 @@ Aluno *buscar_aluno_pela_matricula(Aluno *alunos, int qnta)
     return NULL; // Retorna NULL para indicar que não foi encontrado nenhum aluno
 }
 
-// Função auxiliar para comparar dois nomes de alunos
 int comparar_nomes(const void *a, const void *b)
 {
     Aluno *alunoA = (Aluno *)a;
@@ -93,7 +140,7 @@ Aluno *buscar_aluno_pelo_nome(Aluno *alunos, int qnta)
     // Pedir ao usuário o nome do aluno que deseja buscar
     printf("Digite o nome do aluno que deseja buscar: ");
     scanf(" %[^\n]s", nome);
-
+    corrige_nome(nome);
     // Ordenar o array de alunos em ordem alfabética pelo nome
     qsort(alunos, qnta, sizeof(Aluno), comparar_nomes);
 
@@ -118,99 +165,16 @@ Aluno *buscar_aluno_pelo_nome(Aluno *alunos, int qnta)
     {
         return &alunos[i];
     }
-
     return NULL;
 }
 
-FILE *cadastrar_aluno(FILE *arquivo, const char caminho [])
-{
-    Aluno aluno;
-    int i;
-    char opcao_documento;
-
-    // Abrir o arquivo para escrita
-    arquivo = fopen(caminho, "a");
-
-    // Verificar se o arquivo foi aberto com sucesso
-    if (arquivo == NULL)
-    {
-        printf("Erro ao abrir o arquivo.\n");
-        exit(1);
-    }
-
-    // Ler os dados do aluno
-    printf("Digite o nome do aluno: ");
-    scanf(" %[^\n]s", aluno.nome);
-    // Formatando nome
-    int tamanhodonome = strlen(aluno.nome);
-    aluno.nome[0] = toupper(aluno.nome[0]); // convertendo o primeiro caractere para maiusculo
-    // Percorra os caracteres restantes e convertendo para minúscula
-    for (i = 1; i < tamanhodonome; i++)
-    {
-        aluno.nome[i] = tolower(aluno.nome[i]);
-        // Verificando se o caractere anterior é um espaço em branco Se sim, converte o caractere atual para maiúscula
-        if (aluno.nome[i - 1] == ' ')
-        {
-            aluno.nome[i] = toupper(aluno.nome[i]);
-        }
-    }
-    printf("Digite a matricula do aluno: ");
-    scanf("%d", &aluno.matricula);
-    aluno.media = 0.0;
-
-    // Pedir para o usuário escolher qual documento cadastrar
-    printf("Digite '1' para cadastrar o CPF ou '2' para cadastrar o RG: ");
-    scanf(" %c", &opcao_documento);
-
-    // Ler o documento escolhido pelo usuário
-    if (opcao_documento == '1')
-    {
-        printf("Digite o CPF do aluno (XXX.YYY.ZZZ-SS): ");
-        scanf(" %s", aluno.documento.cpf);
-    }
-    else if (opcao_documento == '2')
-    {
-        printf("Digite o RG do aluno (XXX.YYY.ZZZ): ");
-        scanf(" %s", aluno.documento.rg);
-    }
-    else
-    {
-        printf("Opcao invalida.\n");
-        exit(1);
-    }
-
-    for (i = 0; i < 3; i++)
-    {
-        printf("Digite a nota %d do aluno: ", i + 1);
-        scanf("%f", &aluno.notas[i]);
-        aluno.media += aluno.notas[i];
-    }
-    aluno.media = aluno.media / 3;
-
-    // Escrever os dados do aluno no arquivo
-    if (opcao_documento == '1')
-    {
-        fprintf(arquivo, "%s\t%d\t%s\t%.1f\t%.1f\t%.1f\t%.1f\n", aluno.nome, aluno.matricula, aluno.documento.cpf, aluno.notas[0], aluno.notas[1], aluno.notas[2], aluno.media);
-    }
-    else
-    {
-        fprintf(arquivo, "%s\t%d\t%s\t%.1f\t%.1f\t%.1f\t%.1f\n", aluno.nome, aluno.matricula, aluno.documento.rg, aluno.notas[0], aluno.notas[1], aluno.notas[2], aluno.media);
-    }
-
-    // Fechar o arquivo
-    fclose(arquivo);
-    printf("Aluno cadastrado com sucesso.\n\n");
-    return arquivo;
-}
-
-Aluno *ler_arquivo(Aluno *alunos, const char caminho [], int *qnta)
+Aluno *ler_arquivo(Aluno **alunos, const char caminho[], int *qnta, int *mat)
 {
     FILE *arquivo;
     int i = 0;
     char linha[200];
     char *token;
 
-    // Abrir o arquivo para leitura
     arquivo = fopen(caminho, "r");
     if (arquivo == NULL)
     {
@@ -218,14 +182,12 @@ Aluno *ler_arquivo(Aluno *alunos, const char caminho [], int *qnta)
         exit(1);
     }
 
-    // Ler cada linha do arquivo e armazenar em um elemento do array
     while (fgets(linha, 200, arquivo) != NULL)
     {
-        // Redimensiona o array de alunos dinamicamente, se necessário
         if (i >= *qnta)
         {
-            alunos = (Aluno *)realloc(alunos, (*qnta + 1) * sizeof(Aluno));
-            if (alunos == NULL)
+            (*alunos) = (Aluno *)realloc(*alunos, (*qnta + 1) * sizeof(Aluno));
+            if ((*alunos) == NULL)
             {
                 printf("Erro ao alocar memória para o array de alunos.\n");
                 exit(1);
@@ -233,46 +195,45 @@ Aluno *ler_arquivo(Aluno *alunos, const char caminho [], int *qnta)
             (*qnta)++;
         }
 
-        // Extrai os dados de um aluno a partir de uma linha do arquivo
-        token = strtok(linha, "\t"); // extrai o nome do aluno
-        strcpy((alunos)[i].nome, token);
-        token = strtok(NULL, "\t"); // extrai a matrícula
-        (alunos)[i].matricula = atoi(token);
-        token = strtok(NULL, "\t"); // extrai o documento
+        token = strtok(linha, "\t"); 
+        strcpy((*alunos)[i].nome, token);
+        token = strtok(NULL, "\t"); 
+        (*alunos)[i].matricula = atoi(token);
+        token = strtok(NULL, "\t"); 
         if (strlen(token) == 14)
         {
-            strcpy((alunos)[i].documento.cpf, token);
+            strcpy((*alunos)[i].documento.cpf, token);
         }
         else if (strlen(token) == 11)
         {
-            strcpy((alunos)[i].documento.rg, token);
+            strcpy((*alunos)[i].documento.rg, token);
         }
-        token = strtok(NULL, "\t"); // extrai a primeira nota
-        (alunos)[i].notas[0] = atof(token);
-        token = strtok(NULL, "\t"); // extrai a segunda nota
-        (alunos)[i].notas[1] = atof(token);
-        token = strtok(NULL, "\t"); // extrai a terceira nota
-        (alunos)[i].notas[2] = atof(token);
-        token = strtok(NULL, "\t"); // extrai a média
-        (alunos)[i].media = atof(token);
-        i++; // incrementa o índice do array
+        token = strtok(NULL, "\t"); 
+        (*alunos)[i].notas[0] = atof(token);
+        token = strtok(NULL, "\t"); 
+        (*alunos)[i].notas[1] = atof(token);
+        token = strtok(NULL, "\t"); 
+        (*alunos)[i].notas[2] = atof(token);
+        token = strtok(NULL, "\t"); 
+        (*alunos)[i].media = atof(token);
+        (*mat) = (*alunos)[i].matricula - 100 + 1;
+        i++; 
     }
-    // Fechar o arquivo
+
     fclose(arquivo);
-    return alunos;
+    return (*alunos);
 }
 
-// exibe os alunos armazenados na struct Aluno
 void listar_alunos(Aluno *alunos, int qnta)
 {
     int i, j;
-    // Verificar se o array de alunos está vazio
+    
     if (alunos == NULL)
     {
         printf("Nenhum aluno cadastrado.\n");
         return;
     }
-    // Imprimir os dados de cada aluno
+    
     for (i = 0; i < qnta; i++)
     {
         printf("Aluno %d\n", i + 1);

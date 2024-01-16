@@ -9,6 +9,20 @@
 #include <time.h> //Tempo de execução
 #include <ctype.h> //manipulação de caracteres
 
+#define RED "\x1B[31m"
+#define GREEN "\x1B[32m"
+#define YELLOW "\x1B[33m"
+#define WHITE "\x1B[0m"
+
+#define N_OPCOES 8
+
+#define OPCAO1 '1'
+#define OPCAO2 '2'
+#define OPCAO3 '3'
+#define OPCAO4 '4'
+#define OPCAO5 '5'
+#define OPCAO6 '6'
+
 // Lê e descarta caracteres encontrados na entrada
 void limpa_buffer(void);
 
@@ -30,13 +44,22 @@ void print_yellow(char *text);
 // Imprime em vermelho
 void print_red(char *text);
 
-// verificação do numero
-int verifica_numero_telefone(const char numero[]);
+//verifica se o cpf está no formato correto
+int validar_cpf(const char *cpf);
 
-// verificação do email
-int verifica_email(const char email[]);
+// verifica se o rg está no formato correto
+int validar_rg(const char *rg);
 
-// formatação do numero
-void formata_numero_telefone(char numero[]);
+//le um cpf
+void ler_cpf(char cpf[]);
+
+// le um rg
+void ler_rg(char rg[]);
+
+//valida nota
+int validar_nota(const char *entrada);
+
+// le uma nota
+float ler_nota();
 
 #endif // SISTEMA_H

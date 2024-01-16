@@ -6,40 +6,37 @@ int main(void)
     clock_t inicio;
     double tempo;
     int controle, totaldealunos = 0, j;
+    int mat = 0;
     Aluno *alunotemporario;
-    FILE *arquivo;
     const char caminho[] = "../data/aluno.txt";
     Aluno *alunos = (Aluno *)malloc(sizeof(Aluno)); // alocando dinamicamente
     if (alunos == NULL)
     {
-        printf("[ERRO]");
+        print_red("[ERRO]");
         exit(1);
     }
-    alunos = ler_arquivo(alunos, caminho, &totaldealunos); 
-    printf("+----------------------------------------------------------------+\n"
-           "|        Bem-vindo ao Programa de Gerenciamento de Alunos        |\n"
-           "|                                                                |\n"
-           "|             Autores: Jhoan   Abner   Caio    Tomaz             |\n"
-           "|                                                                |\n"
-           "|                          Versao: 2.0                           |\n"
-           "+----------------------------------------------------------------+\n\n");
-    while (controle != 6) 
+    alunos = ler_arquivo(&alunos, caminho, &totaldealunos, &mat);
+    print_green("+----------------------------------------------------------------+\n"
+                "|        Bem-vindo ao Programa de Gerenciamento de Alunos        |\n"
+                "|                                                                |\n"
+                "|             Autores: Jhoan   Abner   Caio    Tomaz             |\n"
+                "|                                                                |\n"
+                "|                          Versao: 2.0                           |\n"
+                "+----------------------------------------------------------------+\n\n");
+    while (controle != OPCAO5)
     {
         menu();
-        scanf("%d", &controle);
+        controle = le_opcao(OPCAO1, OPCAO5);
         switch (controle)
         {
-        case 1:
-            alunos = ler_arquivo(alunos, caminho, &totaldealunos);
-            printf("Atualizado!\n\n");
-            break;
-        case 2:
+        case OPCAO1:
             listar_alunos(alunos, totaldealunos);
             break;
-        case 3:
-            cadastrar_aluno(arquivo, caminho);
+        case OPCAO2:
+            cadastrar_aluno(caminho, &mat);
+            alunos = ler_arquivo(&alunos, caminho, &totaldealunos, &mat);
             break;
-        case 4:
+        case OPCAO3:
             inicio = clock();
             alunotemporario = buscar_aluno_pela_matricula(alunos, totaldealunos);
             tempo = (double)(clock() - inicio) / CLOCKS_PER_SEC;
@@ -47,7 +44,7 @@ int main(void)
             printf("Tempo de execucao: %.1f Milisegundos\n", tempo);
             if (alunotemporario != NULL)
             {
-                printf("\nAluno Encontrado!\n\n");
+                print_green("\nAluno Encontrado!\n\n");
                 printf("Nome: %s\n", alunotemporario->nome);
                 printf("Matricula: %d\n", alunotemporario->matricula);
                 if (strlen(alunotemporario->documento.cpf) == 14)
@@ -67,10 +64,10 @@ int main(void)
             }
             else
             {
-                printf("Aluno Nao foi encontrado!\n\n");
+                print_red("Aluno Nao foi encontrado!\n\n");
             }
             break;
-        case 5:
+        case OPCAO4:
             inicio = clock();
             alunotemporario = buscar_aluno_pelo_nome(alunos, totaldealunos);
             tempo = (double)(clock() - inicio) / CLOCKS_PER_SEC;
@@ -78,7 +75,7 @@ int main(void)
             printf("Tempo de execucao: %.1f Milisegundos\n", tempo);
             if (alunotemporario != NULL)
             {
-                printf("\nAluno Encontrado!\n\n");
+                print_green("\nAluno Encontrado!\n\n");
                 printf("Nome: %s\n", alunotemporario->nome);
                 printf("Matricula: %d\n", alunotemporario->matricula);
                 if (strlen(alunotemporario->documento.cpf) == 14)
@@ -98,18 +95,17 @@ int main(void)
             }
             else
             {
-                printf("Aluno Nao foi encontrado!\n\n");
+                print_red("Aluno Nao foi encontrado!\n\n");
             }
             break;
-        case 6:
-            printf("Obrigado por usar meu programa!");
+        case OPCAO5:
+            print_yellow("Obrigado por usar meu programa!\n");
             break;
         default:
-            printf("opcao invalida!");
+            print_red("opcao invalida!\n");
             break;
         }
     }
-    fclose(arquivo);
     free(alunos);
     return 0;
 }
