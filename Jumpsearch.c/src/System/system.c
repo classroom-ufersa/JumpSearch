@@ -94,7 +94,7 @@ void ler_cpf(char cpf[])
         limpa_buffer();
         if (validar_cpf(cpf))
         {
-            printf("Erro: digite um CPF valido.\n");
+            print_red("Erro: digite um CPF valido.\n");
         }
     } while (validar_cpf(cpf));
 }
@@ -108,7 +108,7 @@ void ler_rg(char rg[])
         limpa_buffer();
         if (validar_rg(rg))
         {
-            printf("Erro: digite um RG valido.\n");
+            print_red("Erro: digite um RG valido.\n");
         }
     } while (validar_rg(rg));
 }
