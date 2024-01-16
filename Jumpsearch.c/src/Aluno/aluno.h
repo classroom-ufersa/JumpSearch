@@ -5,22 +5,22 @@ typedef union documento Documento;
 typedef struct aluno Aluno;
 
 // Função auxiliar para comparar duas matrículas de alunos
-int compararMatriculas(const void* a, const void* b);
+int comparar_matriculas(const void* a, const void* b);
 
 // Função que busca um aluno pela matrícula utilizando o algoritmo Jump Search
-Aluno* BuscarAlunoPelaMatricula(Aluno* alunos, int qnta);
+Aluno* buscar_aluno_pela_matricula(Aluno* alunos, int qnta);
 
 // Função auxiliar para comparar dois nomes de alunos
-int compararNomes(const void* a, const void* b);
+int comparar_nomes(const void* a, const void* b);
 
 // Função que busca um aluno pelo nome utilizando o algoritmo Jump Search
-Aluno* BuscarAlunoPeloNome(Aluno* alunos, int qnta);
+Aluno* buscar_aluno_pelo_nome(Aluno* alunos, int qnta);
 
 //função que adiciona aluno no arquivo
-FILE* cadastrarAluno(FILE* arquivo, char caminho []);
+FILE* cadastrar_aluno(FILE* arquivo, char caminho []);
 
 //Função que lê o arquivo e adiciona os alunos numa array do tipo aluno
-Aluno * lerArquivo(Aluno *alunos, char caminho[], int *qnta); 
+Aluno * ler_arquivo(Aluno *alunos, char caminho[], int *qnta); 
 
 //exibe os alunos armazenados na struct Aluno
-void ListarAlunos(Aluno* alunos, int qnta);
+void listar_alunos(Aluno* alunos, int qnta);

@@ -16,14 +16,14 @@ struct aluno
 };
 
 // Função auxiliar para comparar duas matrículas de alunos
-int compararMatriculas(const void *a, const void *b)
+int comparar_matriculas(const void *a, const void *b)
 {
     Aluno *alunoA = (Aluno *)a;
     Aluno *alunoB = (Aluno *)b;
     return alunoA->matricula - alunoB->matricula;
 }
 
-Aluno *BuscarAlunoPelaMatricula(Aluno *alunos, int qnta)
+Aluno *buscar_aluno_pela_matricula(Aluno *alunos, int qnta)
 {
     int matricula;
     int salto = sqrt(qnta); // Calcula o tamanho do salto para o algoritmo Jump Search
@@ -41,7 +41,7 @@ Aluno *BuscarAlunoPelaMatricula(Aluno *alunos, int qnta)
     scanf("%d", &matricula);
 
     // Ordenar o array de alunos em ordem crescente pela matrícula
-    qsort(alunos, qnta, sizeof(Aluno), compararMatriculas); // Ordena o array de alunos
+    qsort(alunos, qnta, sizeof(Aluno), comparar_matriculas); // Ordena o array de alunos
 
     // Aplicar o algoritmo Jump Search para encontrar o índice do aluno no array
     while (i < qnta && alunos[i].matricula < matricula) // Executa um loop enquanto a matrícula do aluno atual for menor do que a matrícula procurada
@@ -69,7 +69,7 @@ Aluno *BuscarAlunoPelaMatricula(Aluno *alunos, int qnta)
 }
 
 // Função auxiliar para comparar dois nomes de alunos
-int compararNomes(const void *a, const void *b)
+int comparar_nomes(const void *a, const void *b)
 {
     Aluno *alunoA = (Aluno *)a;
     Aluno *alunoB = (Aluno *)b;
@@ -77,7 +77,7 @@ int compararNomes(const void *a, const void *b)
 }
 
 // Função que busca um aluno pelo nome utilizando o algoritmo Jump Search
-Aluno *BuscarAlunoPeloNome(Aluno *alunos, int qnta)
+Aluno *buscar_aluno_pelo_nome(Aluno *alunos, int qnta)
 {
     char nome[100];
     int salto = sqrt(qnta);
@@ -95,7 +95,7 @@ Aluno *BuscarAlunoPeloNome(Aluno *alunos, int qnta)
     scanf(" %[^\n]s", nome);
 
     // Ordenar o array de alunos em ordem alfabética pelo nome
-    qsort(alunos, qnta, sizeof(Aluno), compararNomes);
+    qsort(alunos, qnta, sizeof(Aluno), comparar_nomes);
 
     // Aplicar o algoritmo Jump Search para encontrar o índice do aluno no array
     while (i < qnta && strcmp(alunos[i].nome, nome) < 0)
@@ -122,7 +122,7 @@ Aluno *BuscarAlunoPeloNome(Aluno *alunos, int qnta)
     return NULL;
 }
 
-FILE *cadastrarAluno(FILE *arquivo, char caminho[])
+FILE *cadastrar_aluno(FILE *arquivo, char caminho[])
 {
     Aluno aluno;
     int i;
@@ -203,7 +203,7 @@ FILE *cadastrarAluno(FILE *arquivo, char caminho[])
     return arquivo;
 }
 
-Aluno *lerArquivo(Aluno *alunos, char caminho[], int *qnta)
+Aluno *ler_arquivo(Aluno *alunos, char caminho[], int *qnta)
 {
     FILE *arquivo;
     int i = 0;
@@ -263,7 +263,7 @@ Aluno *lerArquivo(Aluno *alunos, char caminho[], int *qnta)
 }
 
 // exibe os alunos armazenados na struct Aluno
-void ListarAlunos(Aluno *alunos, int qnta)
+void listar_alunos(Aluno *alunos, int qnta)
 {
     int i, j;
     // Verificar se o array de alunos está vazio
