@@ -1,0 +1,26 @@
+### VisualStudioCode ###
+.vscode/*
+.vscode/settings.json
+.vscode/tasks.json
+.vscode/launch.json
+.vscode/extensions.json
+*.code-workspace
+
+# Arquivos objeto e executáveis
+*.o
+*.out
+*.exe
+
+# Arquivos gerados pelo compilador
+*.dSYM/
+
+# Arquivos temporários
+*~
+
+# Arquivos de compilação e logs
+*.log
+*.log.*
+*.stackdump
+
+# Diretórios de construção
+/build/

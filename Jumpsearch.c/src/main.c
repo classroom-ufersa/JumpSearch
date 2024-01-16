@@ -1,70 +1,50 @@
-#include "aluno.c"
+#include "Aluno/aluno.c"
+#include "System/system.c"
 
 int main(void)
 {
-    // declarando variaveis
     clock_t inicio;
     double tempo;
     int controle, totaldealunos = 0, j;
+    int mat = 0;
     Aluno *alunotemporario;
-    FILE *arquivo;
-    char caminho[] = "C:\\Users\\jhoan\\Desktop\\VScode\\GitHub\\JumpSearch\\Jumpsearch.c\\data\\aluno.txt"; // caminho do arquivo txt(Varia de pc para pc)
-    arquivo = fopen(caminho, "r");
+    const char caminho[] = "../data/aluno.txt";
     Aluno *alunos = (Aluno *)malloc(sizeof(Aluno)); // alocando dinamicamente
     if (alunos == NULL)
     {
-        printf("[ERRO]");
+        print_red("[ERRO]");
         exit(1);
     }
-    alunos = NULL; // inicializnando o "vetor aluno"
-    if (arquivo == NULL)
+    alunos = ler_arquivo(&alunos, caminho, &totaldealunos, &mat);
+    print_green("+----------------------------------------------------------------+\n"
+                "|        Bem-vindo ao Programa de Gerenciamento de Alunos        |\n"
+                "|                                                                |\n"
+                "|             Autores: Jhoan   Abner   Caio    Tomaz             |\n"
+                "|                                                                |\n"
+                "|                          Versao: 2.0                           |\n"
+                "+----------------------------------------------------------------+\n\n");
+    while (controle != OPCAO5)
     {
-        printf("Erro ao abrir arquivo!");
-        exit(1);
-    }
-    alunos = lerArquivo(alunos, caminho, &totaldealunos); //inicialização inicial do vetor alunos com dados do arquivo
-    printf("+----------------------------------------------------------------+\n"
-           "|        Bem-vindo ao Programa de Gerenciamento de Alunos        |\n"
-           "|                                                                |\n"
-           "|             Autores: Jhoan   Abner   Caio    Tomaz             |\n"
-           "|                                                                |\n"
-           "|                          Versao: 2.0                           |\n"
-           "+----------------------------------------------------------------+\n\n");
-    while (controle != 6) // vai repetir ate o usuario digitar 6
-    {
-        printf("Menu:\n");
-        printf("========================================\n");
-        printf("[1] Atualizar sistema\n");
-        printf("[2] Listar Alunos\n");
-        printf("[3] Matricular alunos\n");
-        printf("[4] Buscar aluno por matricula\n");
-        printf("[5] Buscar aluno pelo nome\n");
-        printf("[6] Sair\n");
-        printf("========================================\n");
-        printf("Digite o numero da opcao desejada: ");
-        scanf("%d", &controle);
-        system("cls");
+        menu();
+        controle = le_opcao(OPCAO1, OPCAO5);
         switch (controle)
         {
-        case 1:
-            alunos = lerArquivo(alunos, caminho, &totaldealunos);
-            printf("Atualizado!\n\n");
+        case OPCAO1:
+            listar_alunos(alunos, totaldealunos);
             break;
-        case 2:
-            ListarAlunos(alunos, totaldealunos);
+        case OPCAO2:
+            cadastrar_aluno(caminho, &mat);
+            alunos = ler_arquivo(&alunos, caminho, &totaldealunos, &mat);
             break;
-        case 3:
-            cadastrarAluno(arquivo, caminho);
-            break;
-        case 4:
+        case OPCAO3:
             inicio = clock();
-            alunotemporario = BuscarAlunoPelaMatricula(alunos, totaldealunos);
+            alunotemporario = buscar_aluno_pela_matricula(alunos, totaldealunos);
             tempo = (double)(clock() - inicio) / CLOCKS_PER_SEC;
             tempo = tempo * 1000; // Milisegundos
             printf("Tempo de execucao: %.1f Milisegundos\n", tempo);
             if (alunotemporario != NULL)
             {
-                printf("\nAluno Encontrado!\n\n");
+                print_green("\nAluno Encontrado!\n\n");
                 printf("Nome: %s\n", alunotemporario->nome);
                 printf("Matricula: %d\n", alunotemporario->matricula);
                 if (strlen(alunotemporario->documento.cpf) == 14)
@@ -84,18 +64,18 @@ int main(void)
             }
             else
             {
-                printf("Aluno Nao foi encontrado!\n\n");
+                print_red("Aluno Nao foi encontrado!\n\n");
             }
             break;
-        case 5:
+        case OPCAO4:
             inicio = clock();
-            alunotemporario = BuscarAlunoPeloNome(alunos, totaldealunos);
+            alunotemporario = buscar_aluno_pelo_nome(alunos, totaldealunos);
             tempo = (double)(clock() - inicio) / CLOCKS_PER_SEC;
             tempo = tempo * 1000; // Milisegundos
             printf("Tempo de execucao: %.1f Milisegundos\n", tempo);
             if (alunotemporario != NULL)
             {
-                printf("\nAluno Encontrado!\n\n");
+                print_green("\nAluno Encontrado!\n\n");
                 printf("Nome: %s\n", alunotemporario->nome);
                 printf("Matricula: %d\n", alunotemporario->matricula);
                 if (strlen(alunotemporario->documento.cpf) == 14)
@@ -115,18 +95,17 @@ int main(void)
             }
             else
             {
-                printf("Aluno Nao foi encontrado!\n\n");
+                print_red("Aluno Nao foi encontrado!\n\n");
             }
             break;
-        case 6:
-            printf("Obrigado por usar meu programa!");
+        case OPCAO5:
+            print_yellow("Obrigado por usar meu programa!\n");
             break;
         default:
-            printf("opcao invalida!");
+            print_red("opcao invalida!\n");
             break;
         }
     }
-    fclose(arquivo);
     free(alunos);
     return 0;
 }
