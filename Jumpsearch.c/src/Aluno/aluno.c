@@ -122,7 +122,7 @@ Aluno *buscar_aluno_pelo_nome(Aluno *alunos, int qnta)
     return NULL;
 }
 
-FILE *cadastrar_aluno(FILE *arquivo, char caminho[])
+FILE *cadastrar_aluno(FILE *arquivo, const char caminho [])
 {
     Aluno aluno;
     int i;
@@ -203,7 +203,7 @@ FILE *cadastrar_aluno(FILE *arquivo, char caminho[])
     return arquivo;
 }
 
-Aluno *ler_arquivo(Aluno *alunos, char caminho[], int *qnta)
+Aluno *ler_arquivo(Aluno *alunos, const char caminho [], int *qnta)
 {
     FILE *arquivo;
     int i = 0;

@@ -1,3 +1,6 @@
+#ifndef ALUNO_H
+#define ALUNO_H
+
 #include "../System/system.h"
 
 typedef union documento Documento;
@@ -17,10 +20,12 @@ int comparar_nomes(const void* a, const void* b);
 Aluno* buscar_aluno_pelo_nome(Aluno* alunos, int qnta);
 
 //função que adiciona aluno no arquivo
-FILE* cadastrar_aluno(FILE* arquivo, char caminho []);
+FILE* cadastrar_aluno(FILE* arquivo, const char caminho []);
 
 //Função que lê o arquivo e adiciona os alunos numa array do tipo aluno
-Aluno * ler_arquivo(Aluno *alunos, char caminho[], int *qnta); 
+Aluno *ler_arquivo(Aluno *alunos, const char caminho [], int *qnta);
 
 //exibe os alunos armazenados na struct Aluno
 void listar_alunos(Aluno* alunos, int qnta);
+
+#endif // ALUNO_H

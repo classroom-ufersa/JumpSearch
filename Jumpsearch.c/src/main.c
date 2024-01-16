@@ -1,28 +1,21 @@
-#include "aluno.c"
+#include "Aluno/aluno.c"
+#include "System/system.c"
 
 int main(void)
 {
-    // declarando variaveis
     clock_t inicio;
     double tempo;
     int controle, totaldealunos = 0, j;
     Aluno *alunotemporario;
     FILE *arquivo;
-    char caminho[] = "C:\\Users\\jhoan\\Desktop\\VScode\\GitHub\\JumpSearch\\Jumpsearch.c\\data\\aluno.txt"; // caminho do arquivo txt(Varia de pc para pc)
-    arquivo = fopen(caminho, "r");
+    const char caminho[] = "../data/aluno.txt";
     Aluno *alunos = (Aluno *)malloc(sizeof(Aluno)); // alocando dinamicamente
     if (alunos == NULL)
     {
         printf("[ERRO]");
         exit(1);
     }
-    alunos = NULL; // inicializnando o "vetor aluno"
-    if (arquivo == NULL)
-    {
-        printf("Erro ao abrir arquivo!");
-        exit(1);
-    }
-    alunos = lerArquivo(alunos, caminho, &totaldealunos); //inicialização inicial do vetor alunos com dados do arquivo
+    alunos = ler_arquivo(alunos, caminho, &totaldealunos); 
     printf("+----------------------------------------------------------------+\n"
            "|        Bem-vindo ao Programa de Gerenciamento de Alunos        |\n"
            "|                                                                |\n"
@@ -30,34 +23,25 @@ int main(void)
            "|                                                                |\n"
            "|                          Versao: 2.0                           |\n"
            "+----------------------------------------------------------------+\n\n");
-    while (controle != 6) // vai repetir ate o usuario digitar 6
+    while (controle != 6) 
     {
-        printf("Menu:\n");
-        printf("========================================\n");
-        printf("[1] Atualizar sistema\n");
-        printf("[2] Listar Alunos\n");
-        printf("[3] Matricular alunos\n");
-        printf("[4] Buscar aluno por matricula\n");
-        printf("[5] Buscar aluno pelo nome\n");
-        printf("[6] Sair\n");
-        printf("========================================\n");
-        printf("Digite o numero da opcao desejada: ");
+        menu();
         scanf("%d", &controle);
         switch (controle)
         {
         case 1:
-            alunos = lerArquivo(alunos, caminho, &totaldealunos);
+            alunos = ler_arquivo(alunos, caminho, &totaldealunos);
             printf("Atualizado!\n\n");
             break;
         case 2:
-            ListarAlunos(alunos, totaldealunos);
+            listar_alunos(alunos, totaldealunos);
             break;
         case 3:
-            cadastrarAluno(arquivo, caminho);
+            cadastrar_aluno(arquivo, caminho);
             break;
         case 4:
             inicio = clock();
-            alunotemporario = BuscarAlunoPelaMatricula(alunos, totaldealunos);
+            alunotemporario = buscar_aluno_pela_matricula(alunos, totaldealunos);
             tempo = (double)(clock() - inicio) / CLOCKS_PER_SEC;
             tempo = tempo * 1000; // Milisegundos
             printf("Tempo de execucao: %.1f Milisegundos\n", tempo);
@@ -88,7 +72,7 @@ int main(void)
             break;
         case 5:
             inicio = clock();
-            alunotemporario = BuscarAlunoPeloNome(alunos, totaldealunos);
+            alunotemporario = buscar_aluno_pelo_nome(alunos, totaldealunos);
             tempo = (double)(clock() - inicio) / CLOCKS_PER_SEC;
             tempo = tempo * 1000; // Milisegundos
             printf("Tempo de execucao: %.1f Milisegundos\n", tempo);
