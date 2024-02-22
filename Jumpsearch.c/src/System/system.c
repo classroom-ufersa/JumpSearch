@@ -199,7 +199,6 @@ void menu(void)
     printf("[4] Buscar aluno pelo nome\n");
     printf("[5] Sair\n");
     printf("========================================\n");
-    printf("Digite o numero da opcao desejada: ");
 }
 
 void print_green(char *text)
