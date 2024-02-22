@@ -198,7 +198,9 @@ void menu(void)
     printf("[3] Buscar aluno por matricula\n");
     printf("[4] Buscar aluno pelo nome\n");
     printf("[5] Sair\n");
-    printf("========================================\n");}
+    printf("========================================\n");
+}
+
 
 void print_green(char *text)
 {

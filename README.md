@@ -166,7 +166,7 @@ Calculando:
     */
 ```
 
-![complexidade raiz n](https://github.com/classroom-ufersa/JumpSearch/blob/develop/Jump.png)
+![complexidade raiz n](https://github.com/classroom-ufersa/JumpSearch/blob/main/Jump.png)
 
 Para obter uma lista de `n` elementos e um tamanho de bloco de `m`, a Pesquisa de salto realizaria `n/m` saltos de maneira ideal. Considerando o tamanho do bloco √n, o tempo de execução também seria `O(√n)`.
 
@@ -174,7 +174,7 @@ Para obter uma lista de `n` elementos e um tamanho de bloco de `m`, a Pesquisa d
 
 Isso coloca a pesquisa de salto entre a pesquisa linear (pior) com uma complexidade de tempo de execução de O(n)e a pesquisa binária (melhor) com uma complexidade de tempo de execução de O(log n). Portanto, o Jump Search pode ser usado em locais onde a pesquisa binária não é viável e a pesquisa linear é muito cara. 
 
-![Complexidade](https://github.com/classroom-ufersa/JumpSearch/blob/develop/Figura.png)
+![Complexidade](https://github.com/classroom-ufersa/JumpSearch/blob/main/Figura.png)
 
 ### Video explicando o codigo na linguagem C
 
